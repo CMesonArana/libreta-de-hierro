@@ -28,9 +28,9 @@ const CAL_INF = "5 min de bici suave. Después, 1-2 series ligeras del primer ej
 
 const PROGRAMAS = {
   estetica: {
-    titulo: "Estética",
+    titulo: "Carlos",
     quien: "32 años · 75 kg",
-    objetivo: "Pecho, glúteo, hombros y abdomen",
+    objetivo: "Estética: pecho, glúteo, hombros y abdomen",
     defecto: "3",
     reglas: ESTETICA_REGLAS,
     planes: {
@@ -88,9 +88,9 @@ const PROGRAMAS = {
   },
 
   perdida: {
-    titulo: "Pérdida de grasa",
+    titulo: "Kevin",
     quien: "32 años · 105 kg",
-    objetivo: "Perder grasa sin perder músculo",
+    objetivo: "Pérdida de grasa sin perder músculo",
     defecto: "3",
     reglas: PERDIDA_REGLAS,
     planes: {
