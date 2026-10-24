@@ -31,7 +31,7 @@ Para probarla en el ordenador hace falta un servidor local (`python -m http.serv
 
 ## Archivos
 
-- `carlos/`, `kevin/`: la página de cada persona (solo dicen qué rutina cargar).
+- `carlos/`, `kevin/`: la página de cada persona (solo dicen qué rutina cargar). Al cambiar cualquier archivo, sube el número `?v=` de sus enlaces para que los móviles carguen la versión nueva al momento.
 - `app.js`, `app.css`: la aplicación.
 - `rutinas.js`: los cuatro planes (series, reps, descansos, alternativas, notas). Es lo que hay que tocar para cambiar una rutina.
 - `ejercicios.js` + `img/`: nombres, pasos e ilustraciones de cada ejercicio.

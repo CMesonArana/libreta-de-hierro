@@ -444,7 +444,6 @@ document.addEventListener("click", e => {
     save();
     const el = document.getElementById("ex-" + d.swap);
     el.outerHTML = card(c, c.dia.ejercicios[+d.swap], +d.swap, el.dataset.label);
-    document.querySelector(`#ex-${d.swap} [aria-selected="true"]`)?.scrollIntoView({ block: "nearest", inline: "nearest" });
     return;
   }
   if (d.addset !== undefined) {
