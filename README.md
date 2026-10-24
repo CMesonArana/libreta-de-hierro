@@ -24,9 +24,12 @@ Para probarla en el ordenador hace falta un servidor local (`python -m http.serv
 ## Cómo se usa
 
 - Elige 2 o 3 días y la sesión (A, B, C). Cada sesión va por **pasos** numerados: un ejercicio suelto, una superserie (2 ejercicios alternos) o un circuito. Tras guardar una sesión, la app pasa sola a la siguiente.
-- Apunta kg y repeticiones y pulsa ✓: arranca el descanso de ese ejercicio. La próxima vez verás lo que hiciste y, si llegaste al tope del rango, un aviso de **¡Sube!**.
+- **Empezar sesión** (o **Empezar** en un paso concreto) pone la app en modo sesión. El paso, el ejercicio y la serie en la que estás quedan marcados, y la barra de abajo dice dónde vas («Paso 2 de 4 · Serie 3 de 4»), qué toca y cuántas reps.
+- Pulsa **Hecha** al acabar cada serie: en las superseries pasa al otro ejercicio sin descanso y, al cerrar la vuelta, arranca el descanso con «Siguiente: …». Los números de serie de cada paso (1, 2, 3, 4) y el número de cada fila sirven para saltar a otra serie.
+- ⏸ pausa la sesión (y el descanso). ■ la para: guardar y terminar, o parar sin guardar (lo apuntado se queda como borrador). Si recargas la página, la sesión sigue donde estaba.
+- La próxima vez verás lo que hiciste y, si llegaste al tope del rango, un aviso de **¡Sube!**. El botón del calendario arriba abre el **registro de sesiones** (fecha, duración, series, kg levantados y el detalle de cada ejercicio).
 - **¿Máquina ocupada?** Arriba de cada ejercicio hay pestañas con el principal y hasta 3 opciones. Toca una y cambia el ejercicio con su imagen y vídeo; se recuerda para esa sesión.
-- Barra inferior: descanso o trabajo rápido, ±15 s, pausa. La rueda ⚙ configura tiempos, sonido, vibración y descanso automático. El cardio tiene intervalos configurables (trabajo, suave, rondas).
+- El cardio tiene intervalos configurables (trabajo, suave, rondas). La rueda ⚙ configura sonido, vibración y la copia de seguridad.
 - El progreso se guarda **en el navegador de cada móvil**. En ⚙ puedes descargar una copia y cargarla en otro dispositivo.
 
 ## Archivos
