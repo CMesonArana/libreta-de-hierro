@@ -25,8 +25,10 @@ Para probarla en el ordenador hace falta un servidor local (`python -m http.serv
 
 - Elige 2 o 3 días y la sesión (A, B, C). Cada sesión va por **pasos** numerados: un ejercicio suelto, una superserie (2 ejercicios alternos) o un circuito. Tras guardar una sesión, la app pasa sola a la siguiente.
 - **Empezar sesión** (o **Empezar** en un paso concreto) pone la app en modo sesión. El paso, el ejercicio y la serie en la que estás quedan marcados, y la barra de abajo dice dónde vas («Paso 2 de 4 · Serie 3 de 4»), qué toca y cuántas reps.
-- Pulsa **Hecha** al acabar cada serie: en las superseries pasa al otro ejercicio sin descanso y, al cerrar la vuelta, arranca el descanso con «Siguiente: …». Los números de serie de cada paso (1, 2, 3, 4) y el número de cada fila sirven para saltar a otra serie.
-- ⏸ pausa la sesión (y el descanso). ■ la para: guardar y terminar, o parar sin guardar (lo apuntado se queda como borrador). Si recargas la página, la sesión sigue donde estaba.
+- La rutina lleva el reloj sola: **Prepárate** (10 s) → **serie** (tiempo según las reps, 4 s por repetición) → **descanso** (el que marca cada ejercicio) → siguiente serie. En las superseries, tras el primer ejercicio sale «Cambia a 1B» y, al cerrar la vuelta, el descanso con «Siguiente: …». Si acabas antes, pulsa **Hecha**; si necesitas más, **+15**.
+- **Saltar** termina la preparación o el descanso. **⏮ Atrás** deshace la última serie y vuelve a ella. Los números de serie de cada paso (1, 2, 3, 4) y el número de cada fila sirven para ir a otra serie.
+- Sonidos suaves: tic-tic en los 3 últimos segundos, un tono que sube al empezar una serie, uno que baja al empezar un descanso y otro al acabar la sesión. En ⚙ se prueban, se apagan y se cambian los segundos por repetición y la preparación.
+- ⏸ pausa la sesión (y el reloj). ■ la para: guardar y terminar, o parar sin guardar (lo apuntado se queda como borrador). Si recargas la página, la sesión sigue donde estaba.
 - La próxima vez verás lo que hiciste y, si llegaste al tope del rango, un aviso de **¡Sube!**. El botón del calendario arriba abre el **registro de sesiones** (fecha, duración, series, kg levantados y el detalle de cada ejercicio).
 - **¿Máquina ocupada?** Arriba de cada ejercicio hay pestañas con el principal y hasta 3 opciones. Toca una y cambia el ejercicio con su imagen y vídeo; se recuerda para esa sesión.
 - El cardio tiene intervalos configurables (trabajo, suave, rondas). La rueda ⚙ configura sonido, vibración y la copia de seguridad.

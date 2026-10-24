@@ -39,6 +39,7 @@ document.body.insertAdjacentHTML("afterbegin", `
     <div class="tbtns">
       <button class="tb main wide" id="tStart" data-empezar="-1"></button>
       <button class="tb main wide" id="tVolver">Volver a la sesión</button>
+      <button class="tb" id="tBack" aria-label="Atrás: volver a la serie anterior"></button>
       <button class="tb" id="tMinus" aria-label="Quitar 15 segundos">−15</button>
       <button class="tb" id="tPause" aria-label="Pausar"></button>
       <button class="tb" id="tPlus" aria-label="Añadir 15 segundos">+15</button>
@@ -63,6 +64,7 @@ const I = {
   pause: '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4.5" width="4" height="15" rx="1"/><rect x="14" y="4.5" width="4" height="15" rx="1"/></svg>',
   stop: '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>',
   next: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 5v14l10-7zM16 5h3v14h-3z"/></svg>',
+  back: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 5v14L9 12zM5 5h3v14H5z"/></svg>',
   x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
   check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
   up: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>',
@@ -88,7 +90,7 @@ const letra = i => String.fromCharCode(65 + i);
 
 function defaults() {
   return { perfil: "estetica", plan: {}, dia: {}, swaps: {}, draft: {}, intv: {}, extra: {}, hist: {}, vivo: {}, registro: {},
-    cfg: { sonido: true, vibrar: true } };
+    cfg: { sonido: true, vibrar: true, segRep: 4, prep: 10 } };
 }
 function load() {
   try { const d = JSON.parse(localStorage.getItem(KEY)); if (d) { const b = defaults(); return { ...b, ...d, cfg: { ...b.cfg, ...d.cfg } }; } } catch (e) {}
@@ -168,7 +170,25 @@ function goto(c, t) {
   const L = vivo();
   if (L && L.dk !== c.dk) return toast(`Ya tienes en curso la sesión ${letra(ctx(L.dk).di)}. Termínala o párala primero`);
   if (L) { L.t = t; reanudar(L); delete L.descansoHasta; } else iniciar(c, t);
-  save(); stopTimer(); render(); enfocar();
+  save(); stopTimer(); render(); enfocar(); empezarSerie(true);
+}
+// Set length for rep sets: top of the rep range × seconds per rep, rounded to 5 s
+const tSerie = item => Math.max(15, Math.ceil(parseInt(String(item.reps).split("-").pop(), 10) * S.cfg.segRep / 5) * 5);
+// The routine drives the clock: [get ready] → set → (completar) → rest → next set
+function empezarSerie(prep) {
+  const L = vivo(), c = L && ctx(L.dk), t = L && turnos(c)[L.t];
+  if (!t) return barra();
+  const item = c.dia.ejercicios[t.i], ex = exOf(c, t.i), tipo = tipoOf(item, ex);
+  const fases = tipo === "cardio" ? cardioFases(c, t.i)
+    : [work(tipo === "tiempo" ? item.segundos : tSerie(item), tipo === "tiempo" ? "Aguanta" : `Serie · ${item.reps} reps`)];
+  if (prep) fases.unshift({ tipo: "prep", s: S.cfg.prep, label: typeof prep === "string" ? prep : "Prepárate" });
+  startTimer(fases, completar);
+}
+function atras() {
+  const L = vivo(), c = ctx(L.dk), TT = turnos(c), k = Math.max(0, Math.min(L.t, TT.length) - 1);
+  marcar(c, TT[k].i, TT[k].r, false);
+  L.t = k; reanudar(L); delete L.descansoHasta;
+  save(); stopTimer(); render(); enfocar(); empezarSerie(true);
 }
 function enfocar() {
   const L = vivo(), t = L && turnos(cur())[L.t];
@@ -179,7 +199,7 @@ function enfocar() {
 function marcar(c, i, s, ok) {
   const tipo = tipoOf(c.dia.ejercicios[i], exOf(c, i));
   const r = (((S.draft[c.dk] ||= {})[i] ||= { sets: [] }).sets[s] ||= {});
-  if (ok && !r.ok) {
+  if (ok && !r.ok && c.dk === cur().dk) {
     // empty fields take last session's value, so one tap logs a set
     document.querySelectorAll(`#i${i}s${s}a, #i${i}s${s}b`).forEach(inp => {
       if (inp.value.trim() === "" && num(inp.placeholder) != null) r[inp.dataset.f] = num(inp.placeholder);
@@ -191,7 +211,7 @@ function marcar(c, i, s, ok) {
   save();
 }
 function completar() {
-  const L = vivo(), c = cur(), TT = turnos(c), t = TT[L.t];
+  const L = vivo(), c = ctx(L.dk), TT = turnos(c), t = TT[L.t];
   if (!t) return abrirFin(true);
   reanudar(L);
   marcar(c, t.i, t.r, true);
@@ -202,18 +222,18 @@ function completar() {
   if (!TT[L.t]) { const k = TT.findIndex(x => !hecho(c, x)); if (k >= 0) { L.t = k; toast(`Te queda el paso ${TT[k].k + 1}`); } }
   if (!TT[L.t]) { save(); render(); return abrirFin(true); }
   const d = descansoTras(c, t);
-  if (d) { L.descansoHasta = Date.now() + d * 1000; startTimer([rest(d)]); }
   save(); render(); enfocar();
+  if (d) { L.descansoHasta = Date.now() + d * 1000; save(); startTimer([rest(d)], () => empezarSerie(false)); }
+  else empezarSerie("Cambia a " + TT[L.t].label);
 }
-// Main button: reps are logged on tap, timed sets and cardio run their timer first
 function accion() {
-  const L = vivo(), c = cur(), t = turnos(c)[L.t];
-  if (!t) return abrirFin(true);
-  const item = c.dia.ejercicios[t.i], ex = exOf(c, t.i), tipo = tipoOf(item, ex);
-  if (T.phases.length || tipo === "reps") return completar();
-  reanudar(L);
-  startTimer(tipo === "tiempo" ? [work(item.segundos, ex.n)] : cardioFases(c, t.i), completar);
+  const L = vivo();
+  if (!turnos(ctx(L.dk))[L.t]) return abrirFin(true);
+  if (T.phases.length) return completar();
+  reanudar(L); empezarSerie(true);
 }
+// Skip: end the current phase now and let the chain continue
+function saltar() { if (T.paused) togglePause(); T.endAt = Date.now(); tick(); }
 function cardioFases(c, i) {
   const item = c.dia.ejercicios[i], iv = { ...(item.int || {}), ...(S.intv[c.dk + "|" + i] || {}) };
   if (!iv.rondas) return [work(item.minutos * 60, exOf(c, i).n)];
@@ -224,7 +244,10 @@ function cardioFases(c, i) {
 function pausa() {
   const L = vivo();
   if (T.phases.length) togglePause();
-  if (L) { if (L.pausadoEn) reanudar(L); else L.pausadoEn = Date.now(); save(); }
+  if (L) {
+    if (L.pausadoEn) { reanudar(L); if (!T.phases.length) empezarSerie(true); } else L.pausadoEn = Date.now();
+    save();
+  }
   barra();
 }
 function volver() {
@@ -459,13 +482,19 @@ let actx;
 function unlockAudio() {
   try { actx ||= new (window.AudioContext || window.webkitAudioContext)(); if (actx.state === "suspended") actx.resume(); } catch (e) {}
 }
-function beep(freq, dur, vol = .35) {
-  if (!S.cfg.sonido || !actx) return;
+// Quiet sine notes with a soft attack (no clicks); each event has its own shape
+const SON = { trabajo: [[660, .12], [990, .24]], descanso: [[880, .12], [587, .28]], suave: [[880, .12], [587, .28]],
+  prep: [[740, .16]], tic: [[1046, .05]], fin: [[523, .12], [659, .12], [784, .34]] };
+function tono(notas, vol = .14) {
+  if (!S.cfg.sonido || !actx || !notas) return;
   try {
-    const o = actx.createOscillator(), g = actx.createGain(), t = actx.currentTime;
-    o.type = "sine"; o.frequency.value = freq; o.connect(g); g.connect(actx.destination);
-    g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(.001, t + dur);
-    o.start(t); o.stop(t + dur);
+    let t = actx.currentTime;
+    for (const [f, d] of notas) {
+      const o = actx.createOscillator(), g = actx.createGain();
+      o.type = "sine"; o.frequency.value = f; o.connect(g); g.connect(actx.destination);
+      g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + .015); g.gain.exponentialRampToValueAtTime(.0001, t + d);
+      o.start(t); o.stop(t + d + .02); t += d * .9;
+    }
   } catch (e) {}
 }
 function buzz(p) { if (S.cfg.vibrar && navigator.vibrate) navigator.vibrate(p); }
@@ -486,6 +515,7 @@ function beginPhase() {
   T.total = p.s; T.endAt = Date.now() + p.s * 1000; T.paused = false; T.lastLeft = -1;
   $("#timer").dataset.state = "run"; $("#timer").dataset.phase = p.tipo;
   document.documentElement.dataset.fase = p.tipo;
+  tono(SON[p.tipo]); buzz(p.tipo === "trabajo" ? [200] : p.tipo === "prep" ? [60] : [80, 80, 80]);
   clearInterval(T.id); T.id = setInterval(tick, 200); tick();
 }
 function tick() {
@@ -494,7 +524,7 @@ function tick() {
   const p = T.phases[T.i];
   if (left !== T.lastLeft) {
     T.lastLeft = left;
-    if (left <= 3 && left > 0) beep(660, .09);
+    if (left <= 3 && left > 0) tono(SON.tic, .08);
     const extra = T.phases.length > 2 ? ` · ${Math.floor(T.i / 2) + 1}/${Math.ceil(T.phases.length / 2)}` : "";
     $("#tchip").textContent = p.label + extra;
     $("#ttime").textContent = fmt(Math.max(0, left));
@@ -502,14 +532,13 @@ function tick() {
   }
   $("#tbar").style.width = Math.max(0, Math.min(100, 100 * (1 - ms / (T.total * 1000)))) + "%";
   if (ms <= 0) {
-    beep(p.tipo === "trabajo" ? 520 : 990, .4); buzz([250, 120, 250]);
     const t = $("#timer"); t.classList.remove("flash"); void t.offsetWidth; t.classList.add("flash");
     T.i++;
     if (T.i < T.phases.length) { beginPhase(); barra(); return; }
     const f = T.onEnd;
-    const L = vivo(); if (L) delete L.descansoHasta;
+    const L = vivo(); if (L && L.descansoHasta) { delete L.descansoHasta; save(); }
     stopTimer();
-    if (f) f();
+    if (f) f(); else { tono(SON.fin); buzz([250, 120, 250]); }
   }
 }
 function stopTimer() {
@@ -538,6 +567,7 @@ const work = (s, label = "Trabajo") => ({ tipo: "trabajo", s, label });
 function barra() {
   const el = $("#timer"), L = vivo(), run = T.phases.length > 0, c = cur();
   const fase = run ? T.phases[T.i].tipo : "", paused = L ? !!L.pausadoEn : T.paused;
+  const ctl = L ? ["tBack", "tPause"] : [];
   let vis = [], top = "", name = "", big = null, chip = null, done = "";
   if (L && L.dk !== c.dk) {
     const o = ctx(L.dk);
@@ -545,19 +575,17 @@ function barra() {
     vis = ["tVolver", "tStop"];
   } else if (L) {
     const TT = turnos(c), t = TT[L.t];
-    if (!t) { top = "Sesión completa"; name = "Guarda la sesión para tu registro"; big = ""; chip = ""; done = `${I.check} Guardar`; vis = ["tStop", "tDone"]; }
+    if (!t) { top = "Sesión completa"; name = "Guarda la sesión para tu registro"; big = ""; chip = ""; done = `${I.check} Guardar`; vis = ["tBack", "tStop", "tDone"]; }
     else {
       const nP = TT.at(-1).k + 1, item = c.dia.ejercicios[t.i], ex = exOf(c, t.i);
       const donde = `Paso ${t.k + 1} de ${nP}` + (t.R > 1 ? ` · ${t.circ ? "Vuelta" : "Serie"} ${t.r + 1} de ${t.R}` : "");
       top = fase === "descanso" ? "Descanso · luego " + donde : donde;
       name = (fase === "descanso" ? "Siguiente: " : "") + t.label + " · " + ex.n;
       if (!run) [big, chip] = objetivo(c, t);
-      const tipo = tipoOf(item, ex);
-      done = run ? `${I.check} Hecha` : tipo === "reps" ? `${I.check} Hecha` : tipo === "tiempo" ? `${I.play} ${item.segundos} s` : `${I.play} Empezar`;
-      if (paused) { vis = ["tPause", "tStop"]; chip = "En pausa"; }
-      else if (fase === "descanso") vis = ["tMinus", "tPause", "tPlus", "tSkip", "tStop"];
-      else if (run) vis = ["tMinus", "tPause", "tPlus", "tDone", "tStop"];
-      else vis = ["tPause", "tStop", "tDone"];
+      done = run ? `${I.check} Hecha` : `${I.play} Empezar`;
+      if (paused) { vis = ctl.concat("tStop"); chip = "En pausa"; }
+      else if (fase === "descanso" || fase === "prep") vis = ctl.concat("tPlus", "tSkip", "tStop");
+      else vis = ctl.concat(run ? "tPlus" : [], "tDone", "tStop");
     }
   } else if (run) {
     top = "Temporizador"; name = "";
@@ -634,6 +662,7 @@ function abrirFin(completa) {
   const c = cur(), L = vivo();
   const n = Object.values(S.draft[c.dk] || {}).reduce((a, e) => a + (e.sets || []).filter(s => s && s.ok).length, 0);
   $("#fTitle").textContent = completa ? "¡Sesión completa!" : "¿Terminar la sesión?";
+  if (completa) tono(SON.fin);
   $("#fBody").innerHTML = `<p style="margin:0">Llevas <b>${n} ${n === 1 ? "serie" : "series"}</b>${L ? ` en <b>${Math.max(1, Math.round(transcurrido(L) / 60000))} min</b>` : ""}.</p>
     <button class="btn block" id="finGuardar">${I.check} Guardar y terminar</button>
     ${completa ? "" : `<button class="btn ghost block" id="finSalir">Parar sin guardar</button>
@@ -643,7 +672,10 @@ function abrirFin(completa) {
 function openCfg() {
   const k = S.cfg;
   $("#cBody").innerHTML = `
-    <div class="field"><label for="cfSon">Sonido<small>Pitidos al final de cada descanso</small></label><input type="checkbox" id="cfSon" ${k.sonido ? "checked" : ""}></div>
+    <div class="field"><label for="cfRep">Segundos por repetición<small>Duración de cada serie: a ${k.segRep} s, una de 10 reps dura ${tSerie({ reps: 10 })} s. Los descansos los marca la rutina.</small></label><input type="number" id="cfRep" inputmode="decimal" value="${k.segRep}"></div>
+    <div class="field"><label for="cfPrep">Preparación (s)<small>Cuenta atrás antes de la primera serie y al cambiar de ejercicio en una superserie</small></label><input type="number" id="cfPrep" inputmode="numeric" value="${k.prep}"></div>
+    <div class="field"><label for="cfSon">Sonidos suaves<small>Tic-tic en los 3 últimos segundos, tono que sube al empezar una serie y que baja al empezar un descanso. En iPhone, quita el modo silencio.</small></label><input type="checkbox" id="cfSon" ${k.sonido ? "checked" : ""}></div>
+    <button class="btn ghost" id="cfTest">${I.play} Probar sonidos</button>
     <div class="field"><label for="cfVib">Vibración<small>Solo en Android</small></label><input type="checkbox" id="cfVib" ${k.vibrar ? "checked" : ""}></div>
     <hr class="sep">
     <p class="label" style="margin:0">Copia de seguridad</p>
@@ -689,7 +721,7 @@ document.addEventListener("click", e => {
   }
   if (d.chk !== undefined) {
     const i = +d.chk, s = +d.s, ok = hecho(c, { i, r: s }), L = vivo();
-    if (!ok && ENVIVO) { const t = turnos(c)[L.t]; if (t && t.i === i && t.r === s) return accion(); }
+    if (!ok && ENVIVO) { const t = turnos(c)[L.t]; if (t && t.i === i && t.r === s) return completar(); }
     marcar(c, i, s, !ok); render(); return;
   }
   if (d.intervalos !== undefined || d.continuo !== undefined) {
@@ -703,7 +735,8 @@ document.addEventListener("click", e => {
     case "btnReg": return openReg();
     case "tVolver": return volver();
     case "tDone": return accion();
-    case "tSkip": { const L = vivo(); if (L) { delete L.descansoHasta; save(); } return stopTimer(); }
+    case "tSkip": return saltar();
+    case "tBack": return atras();
     case "tPause": return pausa();
     case "tPlus": return shift(15);
     case "tMinus": return shift(-15);
@@ -712,6 +745,11 @@ document.addEventListener("click", e => {
       if (vivo().dk !== c.dk) volver();
       return abrirFin(false);
     case "finSalir": $("#dlgFin").close(); return parar();
+    case "cfTest": {
+      unlockAudio();
+      const seq = [SON.prep, SON.tic, SON.tic, SON.trabajo, SON.descanso];
+      seq.forEach((n, k) => setTimeout(() => tono(n, n === SON.tic ? .08 : .14), k * 700)); return;
+    }
     case "cfExp": {
       const a = document.createElement("a");
       a.href = URL.createObjectURL(new Blob([JSON.stringify(S, null, 1)], { type: "application/json" }));
@@ -729,6 +767,8 @@ document.addEventListener("input", e => {
   const t = e.target, d = t.dataset;
   if (d.f) return setDraft(+d.i, +d.s, d.f, num(t.value));
   if (d.iv) { const c = cur(), k = c.dk + "|" + d.i; (S.intv[k] ||= {})[d.iv] = Math.max(1, num(t.value) || 1); return save(); }
+  if (t.id === "cfRep") S.cfg.segRep = Math.min(10, Math.max(1, num(t.value) || 4));
+  if (t.id === "cfPrep") S.cfg.prep = Math.min(60, Math.max(0, num(t.value) ?? 10));
   if (t.id === "cfSon") S.cfg.sonido = t.checked;
   if (t.id === "cfVib") S.cfg.vibrar = t.checked;
   if (t.id.startsWith("cf")) save();
@@ -758,10 +798,10 @@ let tt;
 function toast(msg) { const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(tt); tt = setTimeout(() => t.classList.remove("show"), 3200); }
 
 $("#btnCfg").innerHTML = I.gear; $("#btnReg").innerHTML = I.cal; $("#tStop").innerHTML = I.stop;
-$("#tStart").innerHTML = `${I.play} Empezar sesión`; $("#tSkip").innerHTML = `Saltar ${I.next}`;
+$("#tStart").innerHTML = `${I.play} Empezar sesión`; $("#tSkip").innerHTML = `Saltar ${I.next}`; $("#tBack").innerHTML = I.back;
 document.querySelectorAll("[data-close]").forEach(b => b.innerHTML = I.x);
 // a session left running survives a reload, rest countdown included
 { const L = vivo(); try { if (L) ctx(L.dk); } catch (e) { delete S.vivo[S.perfil]; } }
 render();
 { const L = vivo(), r = L && !L.pausadoEn && L.descansoHasta ? (L.descansoHasta - Date.now()) / 1000 : 0;
-  if (r > 1) startTimer([rest(Math.round(r))]); else if (L) wake(true); }
+  if (r > 1) startTimer([rest(Math.round(r))], () => empezarSerie(false)); else if (L && !L.pausadoEn) empezarSerie(true); }

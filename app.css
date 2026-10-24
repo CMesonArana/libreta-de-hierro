@@ -264,6 +264,10 @@ dialog::backdrop { background: rgb(10 12 14 / .6); }
 .toast.show { opacity: 1; transform: translateX(-50%); }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 @media (max-width: 420px) {
+  .tbtns { gap: 4px; }
+  .tb { min-width: 38px; padding: 0 7px; }
+  .tb.wide { padding: 0 11px; font-size: 15px; }
+  .ttime { font-size: 36px; }
   .brand h1 { font-size: 25px; }
   .intro h2 { font-size: 32px; }
   .row2 { grid-template-columns: 1fr; }
