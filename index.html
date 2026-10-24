@@ -314,7 +314,10 @@ function load() {
 let S = load();
 function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { toast("No se pudo guardar: el navegador bloquea el almacenamiento"); } }
 
-if (PROGRAMAS[location.hash.slice(1)]) S.perfil = location.hash.slice(1);
+// ?solo=<perfil> (from estetica/ and perdida/) locks the page to one person
+const SOLO = PROGRAMAS[new URLSearchParams(location.search).get("solo")] ? new URLSearchParams(location.search).get("solo") : null;
+if (SOLO) { S.perfil = SOLO; document.querySelector('link[rel="manifest"]').href = "manifest-" + SOLO + ".webmanifest"; }
+else if (PROGRAMAS[location.hash.slice(1)]) S.perfil = location.hash.slice(1);
 
 /* ---------- current selection ---------- */
 function cur() {
@@ -337,7 +340,8 @@ function render() {
 
   $("#perfiles").innerHTML = Object.entries(PROGRAMAS).map(([k, p]) =>
     `<button data-perfil="${k}" aria-pressed="${k === S.perfil}">${p.titulo}<small>${p.quien}</small></button>`).join("");
-  $("#perfilInfo").textContent = c.P.objetivo;
+  $("#perfiles").hidden = !!SOLO;
+  $("#perfilInfo").textContent = SOLO ? `${c.P.titulo} · ${c.P.quien} · ${c.P.objetivo}` : c.P.objetivo;
   $("#planes").innerHTML = Object.keys(c.P.planes).map(k =>
     `<button data-plan="${k}" aria-pressed="${k === c.pk}">${k} días</button>`).join("");
 
@@ -747,7 +751,7 @@ document.addEventListener("error", e => {
 }, true);
 addEventListener("hashchange", () => {
   const p = location.hash.slice(1);
-  if (PROGRAMAS[p] && p !== S.perfil) { S.perfil = p; save(); render(); }
+  if (!SOLO && PROGRAMAS[p] && p !== S.perfil) { S.perfil = p; save(); render(); }
 });
 document.addEventListener("visibilitychange", () => { if (!document.hidden && T.phases.length) { wake(true); tick(); } });
 document.querySelectorAll("dialog").forEach(dl => dl.addEventListener("click", e => { if (e.target === dl) dl.close(); }));

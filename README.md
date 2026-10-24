@@ -2,10 +2,12 @@
 
 Web de rutinas de gimnasio para el móvil: cuatro planes de unos 60 minutos, imagen y vídeo de cada ejercicio, hasta 3 alternativas si la máquina está ocupada, temporizador configurable y registro de pesos que recuerda la sesión anterior.
 
-| Persona | Objetivo | Planes |
+| Enlace | Persona | Planes |
 |---|---|---|
-| `#estetica` | 32 años, 75 kg: pecho, glúteo, hombros y abdomen | 2 y 3 días por semana |
-| `#perdida` | 32 años, 105 kg: perder grasa sin perder músculo | 2 y 3 días por semana |
+| [Estética](https://cmesonarana.github.io/libreta-de-hierro/estetica/) | 32 años, 75 kg: pecho, glúteo, hombros y abdomen | 2 y 3 días por semana |
+| [Pérdida de grasa](https://cmesonarana.github.io/libreta-de-hierro/perdida/) | 32 años, 105 kg: perder grasa sin perder músculo | 2 y 3 días por semana |
+
+Cada enlace muestra solo la rutina de esa persona. La raíz (`/libreta-de-hierro/`) muestra las dos con un selector.
 
 ## Publicarla en GitHub Pages (una vez)
 
@@ -13,8 +15,8 @@ Web de rutinas de gimnasio para el móvil: cuatro planes de unos 60 minutos, ima
 2. En el repositorio: **Settings → Pages → Build and deployment → Source: Deploy from a branch**, rama `main`, carpeta `/ (root)`, **Save**.
 3. Al minuto tendrás la web en `https://<tu-usuario>.github.io/<repositorio>/`.
 4. Manda a cada persona su enlace:
-   - `https://<tu-usuario>.github.io/<repositorio>/#estetica`
-   - `https://<tu-usuario>.github.io/<repositorio>/#perdida`
+   - `https://<tu-usuario>.github.io/<repositorio>/estetica/`
+   - `https://<tu-usuario>.github.io/<repositorio>/perdida/`
 5. En el móvil, ábrelo y usa **Añadir a pantalla de inicio** (Safari: botón compartir; Chrome: menú ⋮). Se abre como una app.
 
 También funciona abriendo `index.html` directamente en el ordenador.
