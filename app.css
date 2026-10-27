@@ -198,6 +198,24 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .nowtag { background: var(--accent); color: var(--accent-ink); font-family: var(--display); font-weight: 800; font-size: 19px; text-transform: uppercase; letter-spacing: .03em; padding: 8px 14px; }
 .nowtag .sig, :root[data-fase="descanso"] .nowtag .ya { display: none; }
 :root[data-fase="descanso"] .nowtag .sig { display: inline; }
+/* Exercise timer inside the card */
+.crono { display: grid; gap: 8px; padding: 10px; border-radius: 12px; border: 1px dashed var(--line); background: var(--surface-2); }
+.crono > .label { display: flex; align-items: center; gap: 6px; }
+.crono > .label svg { width: 14px; height: 14px; }
+.crono.on { border: 2px solid var(--accent); background: var(--accent-soft); }
+.ctrow { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.ctinfo { display: grid; min-width: 0; }
+.ctl { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+.ctt { font-family: var(--display); font-weight: 900; font-size: 38px; line-height: .95; font-variant-numeric: tabular-nums; }
+.crono[data-fase="trabajo"] .ctt { color: var(--accent); }
+.ctbtns { display: flex; gap: 4px; flex: none; }
+.tb2 { height: 42px; min-width: 40px; padding: 0 8px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); font-weight: 700; font-size: 13.5px; display: inline-flex; align-items: center; justify-content: center; }
+.tb2 svg { width: 18px; height: 18px; }
+.tb2.main { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.ctbar { height: 5px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.ctbar i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .2s linear; }
+.crono .rondas .label { flex-basis: 100%; }
+.crono .rondas button { width: 36px; height: 36px; font-size: 17px; }
 .set button.sn { border: 0; background: none; padding: 0; height: 46px; border-radius: 10px; }
 .set.now { background: var(--accent-soft); border-radius: 12px; outline: 2px solid var(--accent); outline-offset: 3px; }
 .set.now .sn { background: var(--accent); color: var(--accent-ink); }
