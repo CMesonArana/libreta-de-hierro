@@ -215,7 +215,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .ctbar { height: 5px; border-radius: 3px; background: var(--line); overflow: hidden; }
 .ctbar i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .2s linear; }
 .crono .rondas .label { flex-basis: 100%; }
-.crono .rondas button { width: 36px; height: 36px; font-size: 17px; }
+.crono .rondas button { min-width: 36px; width: auto; height: 36px; padding: 0 6px; border-radius: 18px; font-size: 16px; }
+.crono .rondas button.rest { padding: 0 10px; border-style: dashed; font-family: inherit; font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .set button.sn { border: 0; background: none; padding: 0; height: 46px; border-radius: 10px; }
 .set.now { background: var(--accent-soft); border-radius: 12px; outline: 2px solid var(--accent); outline-offset: 3px; }
 .set.now .sn { background: var(--accent); color: var(--accent-ink); }

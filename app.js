@@ -247,28 +247,34 @@ function cardioFases(c, i) {
   for (let k = 0; k < iv.rondas; k++) ph.push(work(iv.trabajo, "Fuerte"), suave(iv.descanso));
   return ph;
 }
-// Exercise timer: one exercise on its own, from any set to the last, with its own pause and stop.
+// Exercise timer: the step an exercise belongs to (a superset alternates its exercises, like the session),
+// from any set or rest to the end, with its own pause and stop.
 // It never runs at the same time as the session clock: starting one pauses or stops the other.
-const CT = { i: -1, dk: "", fases: [], k: 0, endAt: 0, left: 0, paused: false, id: 0, lastLeft: -1 };
-function ctFases(c, i, desde) {
-  const item = c.dia.ejercicios[i], ex = exOf(c, i), tipo = tipoOf(item, ex), R = item.series || 1;
-  // alone, an exercise from a superset rests what the whole pair rests
-  const d = Math.max(...pasos(c).find(p => p.items.includes(i)).items.map(j => c.dia.ejercicios[j].descanso || 0));
-  const out = [];
-  for (let k = desde; k < R; k++) {
-    out.push({ ...work(tipo === "tiempo" ? item.segundos : tSerie(item), `Serie ${k + 1} de ${R}`), set: k });
-    if (k < R - 1 && d) out.push({ ...rest(d, `Descanso · luego serie ${k + 2}`), set: k });
-  }
+const CT = { p: -1, dk: "", fases: [], k: 0, endAt: 0, left: 0, paused: false, id: 0, lastLeft: -1, lastI: -1 };
+const pasoDe = (c, i) => pasos(c).findIndex(p => p.items.includes(i));
+// every set of step p in session order, with the session's rests between them; each phase knows its exercise and set
+function ctFases(c, p) {
+  const TT = turnos(c).filter(t => t.k === p), multi = pasos(c)[p].items.length > 1, out = [];
+  TT.forEach((t, n) => {
+    const item = c.dia.ejercicios[t.i], sig = TT[n + 1];
+    const serie = (x, R) => `${multi ? x.label + " · " : ""}Serie ${x.r + 1}${R ? " de " + R : ""}`;
+    out.push({ ...work(tipoOf(item, exOf(c, t.i)) === "tiempo" ? item.segundos : tSerie(item), serie(t, item.series || 1)), i: t.i, set: t.r });
+    if (!sig) return;
+    const d = descansoTras(c, t);
+    out.push(d ? { ...rest(d, "Descanso · luego " + serie(sig)), i: sig.i, set: sig.r }
+      : { tipo: "prep", s: S.cfg.prep, label: "Cambia a " + sig.label, i: sig.i, set: sig.r });
+  });
   return out;
 }
-function ctStart(c, i, desde) {
+function ctStart(c, p, k) {
   const L = vivo();
   if (L && !L.pausadoEn) { pausa(); toast("Sesión en pausa mientras usas el temporizador del ejercicio"); }
   else if (!L && T.phases.length) stopTimer();
-  const prev = CT.i;
-  Object.assign(CT, { i, dk: c.dk, fases: ctFases(c, i, desde), k: 0, paused: false });
+  const prev = CT.fases.length && CT.p !== p ? CT.p : -1;
+  if (prev >= 0) ctRedraw(prev);
+  Object.assign(CT, { p, dk: c.dk, fases: ctFases(c, p), k, paused: false });
+  CT.lastI = CT.fases[k].i;
   unlockAudio(); wake(true);
-  if (prev >= 0 && prev !== i) rehacer(prev);
   ctBegin();
 }
 function ctBegin() {
@@ -276,7 +282,12 @@ function ctBegin() {
   CT.endAt = Date.now() + p.s * 1000; CT.lastLeft = -1;
   tono(SON[p.tipo]); buzz(p.tipo === "trabajo" ? [200] : [80, 80, 80]);
   clearInterval(CT.id); CT.id = setInterval(ctTick, 200);
-  rehacer(CT.i); ctTick();
+  ctRedraw(CT.p); ctTick();
+  // superset: follow the exercise that comes next
+  if (p.i !== CT.lastI) {
+    CT.lastI = p.i;
+    (document.getElementById(`i${p.i}s${p.set}a`)?.closest(".set") || document.getElementById("ex-" + p.i))?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
 }
 function ctTick() {
   if (CT.paused || !CT.fases.length) return;
@@ -284,33 +295,32 @@ function ctTick() {
   if (left !== CT.lastLeft) {
     CT.lastLeft = left;
     if (left <= 3 && left > 0) tono(SON.tic, .08);
-    const t = document.getElementById("ctt-" + CT.i); if (t) t.textContent = fmt(Math.max(0, left));
+    document.querySelectorAll(".ctt").forEach(t => t.textContent = fmt(Math.max(0, left)));
   }
-  const b = document.getElementById("ctb-" + CT.i);
-  if (b) b.style.width = Math.max(0, Math.min(100, 100 * (1 - ms / (p.s * 1000)))) + "%";
+  document.querySelectorAll(".ctbar i").forEach(b => b.style.width = Math.max(0, Math.min(100, 100 * (1 - ms / (p.s * 1000)))) + "%");
   if (ms > 0) return;
-  const c = ctx(CT.dk), i = CT.i;
-  if (p.tipo === "trabajo") marcar(c, i, p.set, true);
+  if (p.tipo === "trabajo") marcar(ctx(CT.dk), p.i, p.set, true);
   if (++CT.k < CT.fases.length) return ctBegin();
-  tono(SON.fin); buzz([250, 120, 250]); toast("Ejercicio terminado");
+  tono(SON.fin); buzz([250, 120, 250]); toast(pasos(ctx(CT.dk))[CT.p].items.length > 1 ? "Paso terminado" : "Ejercicio terminado");
   ctStop();
 }
 function ctStop() {
-  const i = CT.i;
-  clearInterval(CT.id); Object.assign(CT, { i: -1, fases: [], paused: false });
+  const p = CT.p;
+  clearInterval(CT.id); Object.assign(CT, { p: -1, fases: [], paused: false });
   if (!vivo() && !T.phases.length) wake(false);
-  rehacer(i);
+  ctRedraw(p);
 }
 function ctPausa() {
   if (CT.paused) CT.endAt = Date.now() + CT.left; else CT.left = CT.endAt - Date.now();
-  CT.paused = !CT.paused; rehacer(CT.i);
+  CT.paused = !CT.paused; ctRedraw(CT.p);
 }
 function ctShift(sec) {
   if (CT.paused) CT.left = Math.max(1000, CT.left + sec * 1000);
   else CT.endAt = Math.max(Date.now() + 1000, CT.endAt + sec * 1000);
   CT.fases[CT.k].s = Math.max(1, CT.fases[CT.k].s + sec);
-  CT.lastLeft = -1; rehacer(CT.i); ctTick();
+  CT.lastLeft = -1; ctRedraw(CT.p); ctTick();
 }
+const ctRedraw = p => p >= 0 && (pasos(cur())[p] || { items: [] }).items.forEach(rehacer);
 // redraw one card in place (no scroll jump)
 function rehacer(i) {
   const c = cur(), el = document.getElementById("ex-" + i);
@@ -420,8 +430,10 @@ function card(c, item, i, label) {
   const nSets = Math.max(item.series || 1, sets.length);
   const allOk = sets.length >= (item.series || 1) && sets.slice(0, item.series).every(s => s && s.ok);
   const nowR = NOW && NOW.i === i ? NOW.r : -1;
-  const mio = CT.fases.length > 0 && CT.i === i && CT.dk === c.dk, cp = mio && CT.fases[CT.k];
-  const ctSet = cp && cp.tipo === "trabajo" ? cp.set : -1;
+  // the exercise timer runs this card's whole step; its phases double as the chips to jump to
+  const pi = pasoDe(c, i), paso = pasos(c)[pi], multi = paso.items.length > 1;
+  const mio = CT.fases.length > 0 && CT.p === pi && CT.dk === c.dk, F = mio ? CT.fases : ctFases(c, pi), cp = mio && F[CT.k];
+  const ctSet = cp && cp.tipo === "trabajo" && cp.i === i ? cp.set : -1;
 
   let log = "";
   if (tipo === "cardio") {
@@ -442,7 +454,7 @@ function card(c, item, i, label) {
     const isT = tipo === "tiempo";
     log = `<div class="sets">
       <div class="sethead"><span>Serie</span><span>${isT ? "Kg extra" : "Kg"}</span><span>${isT ? "Segundos" : "Reps"}</span><span></span></div>
-      ${Array.from({ length: nSets }, (_, s) => setRow(i, s, sets[s], prev && prev.sets[s], "kg", isT ? "seg" : "reps", isT ? item.segundos : 0, s === (ctSet >= 0 ? ctSet : nowR))).join("")}
+      ${Array.from({ length: nSets }, (_, s) => setRow(i, s, sets[s], prev && prev.sets[s], "kg", isT ? "seg" : "reps", isT ? item.segundos : 0, s === (mio ? ctSet : nowR))).join("")}
       <button class="addset" data-addset="${i}">+ Añadir serie</button>
     </div>`;
   }
@@ -458,17 +470,22 @@ function card(c, item, i, label) {
     <div class="tabs" role="tablist" aria-label="Opciones para el ejercicio ${label}">${opts.map((a, k) =>
       `<button role="tab" aria-selected="${a === id}" data-swap="${i}" data-to="${a}"><img src="${EX[a].img[0]}" alt=""><span><b>${EX[a].n}</b><small>${k ? EX[a].eq : "Principal"}</small></span></button>`).join("")}
     </div></div>`;
-  // this exercise's own timer (cardio has its interval buttons instead)
-  const R = item.series || 1, primera = Math.max(0, Array.from({ length: R }, (_, k) => k).findIndex(k => !(sets[k] && sets[k].ok)));
+  // this step's own timer (cardio has its interval buttons instead)
+  const hechoF = f => hecho(c, { i: f.i, r: f.set });
+  const primera = Math.max(0, F.findIndex(f => f.tipo === "trabajo" && !hechoF(f))), fp = F[primera];
+  const actual = cp ? CT.k + (cp.tipo === "prep" ? 1 : 0) : -1;
+  const quien = f => (multi ? letra(paso.items.indexOf(f.i)) : "") + (f.set + 1);
+  const chips = F.map((f, k) => f.tipo === "prep" ? ""
+    : `<button data-ct="${pi},${k}" class="${f.tipo === "descanso" ? "rest" : hechoF(f) ? "ok" : ""}" aria-current="${k === actual ? "step" : "false"}"
+        aria-label="${f.tipo === "descanso" ? `Descanso de ${fmt(f.s)}` : f.label}">${f.tipo === "descanso" ? fmt(f.s) : quien(f)}</button>`).join("");
   const crono = tipo === "cardio" ? "" : `<div class="crono ${mio ? "on" : ""}" data-fase="${cp ? cp.tipo : ""}">
-    <span class="label">${I.clock} Temporizador de este ejercicio</span>
+    <span class="label">${I.clock} Temporizador de ${!multi ? "este ejercicio" : paso.g.startsWith("Circuito") ? "este circuito" : "esta superserie"}</span>
     ${mio ? `<div class="ctrow">
-        <div class="ctinfo"><span class="ctl">${CT.paused ? "En pausa · " : ""}${cp.label}</span><span class="ctt" id="ctt-${i}">${fmt((CT.paused ? CT.left : CT.endAt - Date.now()) / 1000)}</span></div>
-        <div class="ctbtns"><button class="tb2" data-ctshift="-15" aria-label="Quitar 15 segundos">−15</button><button class="tb2 main" data-ctpausa aria-label="${CT.paused ? "Seguir" : "Pausar"}">${CT.paused ? I.play : I.pause}</button><button class="tb2" data-ctshift="15" aria-label="Añadir 15 segundos">+15</button><button class="tb2" data-ctstop aria-label="Parar el temporizador del ejercicio">${I.stop}</button></div>
-      </div><div class="ctbar"><i id="ctb-${i}"></i></div>`
-    : `<button class="btn ghost block" data-ct="${i},${primera}">${I.play} Empezar ${R > 1 ? `desde la serie ${primera + 1}` : "temporizador"}</button>`}
-    ${R > 1 ? `<div class="rondas"><span class="label">${mio ? "Ir a la serie" : "Empezar en la serie"}</span>${Array.from({ length: R }, (_, k) =>
-      `<button data-ct="${i},${k}" class="${sets[k] && sets[k].ok ? "ok" : ""}" aria-current="${cp && cp.set === k ? "step" : "false"}">${k + 1}</button>`).join("")}</div>` : ""}
+        <div class="ctinfo"><span class="ctl">${CT.paused ? "En pausa · " : ""}${cp.label}</span><span class="ctt">${fmt((CT.paused ? CT.left : CT.endAt - Date.now()) / 1000)}</span></div>
+        <div class="ctbtns"><button class="tb2" data-ctshift="-15" aria-label="Quitar 15 segundos">−15</button><button class="tb2 main" data-ctpausa aria-label="${CT.paused ? "Seguir" : "Pausar"}">${CT.paused ? I.play : I.pause}</button><button class="tb2" data-ctshift="15" aria-label="Añadir 15 segundos">+15</button><button class="tb2" data-ctstop aria-label="Parar el temporizador">${I.stop}</button></div>
+      </div><div class="ctbar"><i></i></div>`
+    : `<button class="btn ghost block" data-ct="${pi},${primera}">${I.play} Empezar ${F.length > 1 ? `desde ${multi ? fp.label.replace(" · Serie", " · serie") : `la serie ${fp.set + 1}`}` : "temporizador"}</button>`}
+    ${F.length > 1 ? `<div class="rondas"><span class="label">${mio ? "Ir a" : "Empezar en"} la serie o el descanso</span>${chips}</div>` : ""}
   </div>`;
   const tag = nowR < 0 ? "" : `<div class="nowtag"><span class="ya">Ahora</span><span class="sig">Siguiente</span> · ${tipo === "cardio" ? "cardio" : `serie ${nowR + 1} de ${item.series}`}</div>`;
   return `<article class="ex ${allOk ? "done" : ""} ${nowR >= 0 ? "now" : ""}" id="ex-${i}" data-label="${label}">
