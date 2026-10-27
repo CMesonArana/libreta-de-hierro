@@ -1,6 +1,6 @@
 # Libreta de Hierro
 
-Web de rutinas de gimnasio para el móvil: cuatro planes de unos 60 minutos, imagen y vídeo de cada ejercicio, hasta 3 alternativas si la máquina está ocupada, temporizador configurable y registro de pesos que recuerda la sesión anterior.
+Web de rutinas de gimnasio para el móvil: cuatro planes de unos 60 minutos, imagen y vídeo de cada ejercicio, 6 alternativas por ejercicio si la máquina está ocupada (siempre una con mancuernas y banco y otra sin máquina), temporizador configurable y registro de pesos que recuerda la sesión anterior.
 
 | Enlace | Persona | Planes |
 |---|---|---|
@@ -30,7 +30,7 @@ Para probarla en el ordenador hace falta un servidor local (`python -m http.serv
 - Sonidos suaves: tic-tic en los 3 últimos segundos, un tono que sube al empezar una serie, uno que baja al empezar un descanso y otro al acabar la sesión. En ⚙ se prueban, se apagan y se cambian los segundos por repetición y la preparación.
 - ⏸ pausa la sesión (y el reloj). ■ la para: guardar y terminar, o parar sin guardar (lo apuntado se queda como borrador). Si recargas la página, la sesión sigue donde estaba.
 - La próxima vez verás lo que hiciste y, si llegaste al tope del rango, un aviso de **¡Sube!**. El botón del calendario arriba abre el **registro de sesiones** (fecha, duración, series, kg levantados y el detalle de cada ejercicio).
-- **¿Máquina ocupada?** Arriba de cada ejercicio hay pestañas con el principal y hasta 3 opciones. Toca una y cambia el ejercicio con su imagen y vídeo; se recuerda para esa sesión.
+- **¿Máquina ocupada?** Arriba de cada ejercicio hay pestañas con el principal y 6 alternativas: al menos una con mancuernas y banco y otra de calistenia o solo mancuernas (debajo de cada nombre pone qué material necesita). Toca una y cambia el ejercicio con su imagen y vídeo; se recuerda para esa sesión.
 - El cardio tiene intervalos configurables (trabajo, suave, rondas). La rueda ⚙ configura sonido, vibración y la copia de seguridad.
 - El progreso se guarda **en el navegador de cada móvil**. En ⚙ puedes descargar una copia y cargarla en otro dispositivo.
 

@@ -378,7 +378,7 @@ function card(c, item, i, label) {
   const opts = [item.id, ...(item.alts || [])].filter(a => EX[a]);
   const tabs = opts.length < 2 ? "" : `<div class="opts"><span class="label">¿Máquina ocupada? Elige otra opción</span>
     <div class="tabs" role="tablist" aria-label="Opciones para el ejercicio ${label}">${opts.map((a, k) =>
-      `<button role="tab" aria-selected="${a === id}" data-swap="${i}" data-to="${a}"><img src="${EX[a].img[0]}" alt=""><span><b>${EX[a].n}</b><small>${k ? "Opción " + (k + 1) : "Principal"}</small></span></button>`).join("")}
+      `<button role="tab" aria-selected="${a === id}" data-swap="${i}" data-to="${a}"><img src="${EX[a].img[0]}" alt=""><span><b>${EX[a].n}</b><small>${k ? EX[a].eq : "Principal"}</small></span></button>`).join("")}
     </div></div>`;
   const tag = nowR < 0 ? "" : `<div class="nowtag"><span class="ya">Ahora</span><span class="sig">Siguiente</span> · ${tipo === "cardio" ? "cardio" : `serie ${nowR + 1} de ${item.series}`}</div>`;
   return `<article class="ex ${allOk ? "done" : ""} ${nowR >= 0 ? "now" : ""}" id="ex-${i}" data-label="${label}">

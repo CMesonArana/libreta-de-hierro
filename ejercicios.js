@@ -1388,7 +1388,7 @@ const EX = {
  "decline-crunch": {
   "n": "Crunch Declinado",
   "m": "Abdomen · Flexores de cadera · Oblicuos",
-  "eq": "Banco declinado",
+  "eq": "Banco declinado + mancuerna al pecho",
   "img": [
    "img/decline-crunch-start.webp",
    "img/decline-crunch-peak.webp"
@@ -1403,7 +1403,8 @@ const EX = {
   "tips": [
    "Enrolla la columna en lugar de tirar del cuello.",
    "Exhala al subir y aprieta los abdominales arriba.",
-   "Baja despacio en lugar de dejarte caer sobre el banco."
+   "Baja despacio en lugar de dejarte caer sobre el banco.",
+   "Para cargarlo, sujeta una mancuerna o un disco contra el pecho."
   ]
  },
  "crunches": {
@@ -1766,6 +1767,832 @@ const EX = {
    "Mantén las rodillas alineadas con los pedales al pedalear.",
    "Evita encorvar la espalda cuando aumente la fatiga.",
    "Respira de forma rítmica para sostener la potencia."
+  ],
+  "tipo": "cardio"
+ },
+ "cable-chest-press": {
+  "n": "Press de Pecho con Cable",
+  "m": "Pecho · Hombro frontal · serratus_anterior",
+  "eq": "Poleas (press de pie)",
+  "img": [
+   "img/cable-chest-press-start.webp",
+   "img/cable-chest-press-peak.webp"
+  ],
+  "pasos": [
+   "Ajusta los cables a la altura del pecho y colócate de espaldas a la máquina.",
+   "Sujeta un agarre en cada mano y da un paso adelante adoptando una postura escalonada.",
+   "Empuja los agarres hacia adelante hasta extender los brazos completamente.",
+   "Aprieta el pecho en la parte superior.",
+   "Vuelve de forma controlada y repite."
+  ],
+  "tips": [
+   "Evita que los hombros se adelanten al extender los brazos.",
+   "Mantén el core activo para no perder el equilibrio.",
+   "Mantén las muñecas rectas durante la fase de empuje."
+  ],
+  "paso": 1.25
+ },
+ "decline-push-up": {
+  "n": "Flexión Declinada",
+  "m": "Pecho · Hombro frontal · Tríceps",
+  "eq": "Banco + peso corporal (pies en alto)",
+  "img": [
+   "img/decline-push-up-start.webp",
+   "img/decline-push-up-peak.webp"
+  ],
+  "pasos": [
+   "Coloca los pies en una superficie elevada y las manos en el suelo.",
+   "Baja el pecho hacia el suelo de forma controlada.",
+   "Vuelve a empujar hasta la posición inicial.",
+   "Repite."
+  ],
+  "tips": [
+   "Mantén el cuerpo en línea recta.",
+   "Cuanto mayor sea la elevación, más se trabaja el pecho superior."
+  ]
+ },
+ "negative-pull-ups": {
+  "n": "Dominadas Negativas",
+  "m": "Dorsal · Bíceps · Antebrazo",
+  "eq": "Barra de dominadas, peso corporal",
+  "img": [
+   "img/negative-pull-ups-start.webp",
+   "img/negative-pull-ups-peak.webp"
+  ],
+  "pasos": [
+   "Usa un cajón o salta para colocarte en la parte superior de una dominada.",
+   "Agarra la barra con las manos a la anchura de los hombros.",
+   "Mantén el mentón por encima de la barra un momento.",
+   "Bájate lentamente durante 3-5 segundos con control.",
+   "Extiende los brazos completamente en la parte inferior.",
+   "Vuelve a la posición inicial y repite el número de repeticiones deseado."
+  ],
+  "tips": [
+   "Resiste la bajada durante todo el recorrido, sin dejarte caer al final.",
+   "Mantén los hombros activos, lejos de las orejas.",
+   "Aprieta el core para no balancearte durante el descenso."
+  ]
+ },
+ "band-assisted-pull-ups": {
+  "n": "Dominadas Asistidas con Banda",
+  "m": "Dorsal · Bíceps · Antebrazo",
+  "eq": "Barra de dominadas + banda elástica",
+  "img": [
+   "img/band-assisted-pull-ups-start.webp",
+   "img/band-assisted-pull-ups-peak.webp"
+  ],
+  "pasos": [
+   "Engancha una banda elástica en la barra de dominadas e introduce un pie en ella.",
+   "Agarra la barra con las palmas mirando hacia afuera, a la anchura de los hombros.",
+   "Tira del pecho hacia la barra impulsando los codos hacia abajo.",
+   "Bájate de forma controlada hasta quedar colgado con los brazos extendidos.",
+   "Repite el número de repeticiones deseado."
+  ],
+  "tips": [
+   "Comprueba que la banda esté bien sujeta antes de colgarte.",
+   "No tomes impulso con las piernas, deja que trabaje la espalda.",
+   "Usa una banda más fina a medida que progreses."
+  ]
+ },
+ "db-pullover": {
+  "n": "Pullover con Mancuerna",
+  "m": "Dorsal · Pecho · Tríceps",
+  "eq": "Banco plano + mancuerna",
+  "img": [
+   "img/db-pullover-start.webp",
+   "img/db-pullover-peak.webp"
+  ],
+  "pasos": [
+   "Túmbate en un banco plano con una mancuerna sobre el pecho y los brazos extendidos.",
+   "Baja la mancuerna detrás de la cabeza en arco, manteniendo una ligera flexión de codos.",
+   "Estira hasta sentir tensión en los dorsales y el pecho.",
+   "Tira de la mancuerna de vuelta a la posición inicial.",
+   "Repite."
+  ],
+  "tips": [
+   "Baja la mancuerna solo hasta donde el hombro lo permita.",
+   "Evita arquear la zona lumbar en la fase de estiramiento.",
+   "Mantén la flexión de los codos constante durante todo el arco."
+  ],
+  "paso": 2
+ },
+ "single-leg-hip-thrust": {
+  "n": "Empuje de Cadera a Una Pierna",
+  "m": "Glúteo mayor · Glúteo medio · Isquios",
+  "eq": "Banco, peso corporal",
+  "img": [
+   "img/single-leg-hip-thrust-start.webp",
+   "img/single-leg-hip-thrust-peak.webp"
+  ],
+  "pasos": [
+   "Siéntate en el suelo de espaldas a un banco plano y apoya la parte alta de la espalda en su borde, justo debajo de los omóplatos.",
+   "Apoya ambos pies planos en el suelo con las rodillas flexionadas y luego lleva una rodilla hacia el pecho y mantenla ahí.",
+   "Mantén la barbilla metida hacia el pecho y los brazos apoyados a lo largo del banco.",
+   "Empuja con el talón del pie apoyado y sube las caderas hasta que el cuerpo quede plano desde los hombros hasta la rodilla.",
+   "Aprieta el glúteo arriba sin arquear la zona lumbar y baja las caderas con control.",
+   "Completa las repeticiones previstas y luego cambia de pierna."
+  ],
+  "tips": [
+   "Mantén la espinilla del pie apoyado cerca de la vertical arriba para que el glúteo, y no el isquiotibial, haga la mayor parte del esfuerzo.",
+   "No dejes que las caderas giren hacia la pierna elevada; mantén la pelvis nivelada todo el tiempo.",
+   "Fija el banco contra una pared para que no se deslice y empieza con el empuje de cadera a dos piernas hasta que el movimiento te salga fluido."
+  ]
+ },
+ "cable-upright-row": {
+  "n": "Remo al Mentón con Cable",
+  "m": "Hombro lateral · Trapecio · Hombro frontal · Bíceps",
+  "eq": "Polea baja + barra",
+  "img": [
+   "img/cable-upright-row-start.webp",
+   "img/cable-upright-row-peak.webp"
+  ],
+  "pasos": [
+   "Colócate frente a la máquina de cable y agarra una barra recta o cuerda a la altura de los muslos.",
+   "Tira de la barra hacia el mentón llevando los codos por delante.",
+   "Baja de forma controlada.",
+   "Repite."
+  ],
+  "tips": [
+   "Mantén los codos más altos que las muñecas.",
+   "Evita encoger los hombros en exceso."
+  ],
+  "paso": 1.25
+ },
+ "dumbbell-upright-row": {
+  "n": "Remo al Mentón con Mancuernas",
+  "m": "Hombro lateral · Trapecio · Hombro frontal · Bíceps",
+  "eq": "Mancuernas",
+  "img": [
+   "img/dumbbell-upright-row-start.webp",
+   "img/dumbbell-upright-row-peak.webp"
+  ],
+  "pasos": [
+   "Párate sosteniendo dos mancuernas frente a los muslos, palmas hacia el cuerpo.",
+   "Tira de las mancuernas recto hacia arriba a lo largo del cuerpo, liderando con los codos.",
+   "Sube hasta la altura del mentón con los codos por encima de las muñecas.",
+   "Pausa brevemente, luego baja con control.",
+   "Repite el número de repeticiones deseado."
+  ],
+  "tips": [
+   "Mantén las mancuernas cerca del cuerpo durante todo el movimiento.",
+   "Lidera con los codos, no con las manos.",
+   "Evita un agarre muy estrecho para reducir el riesgo de impingement de hombro."
+  ],
+  "paso": 1
+ },
+ "decline-db-fly": {
+  "n": "Aperturas con Mancuernas en Banco Declinado",
+  "m": "Pecho · Hombro frontal",
+  "eq": "Banco declinado + mancuernas",
+  "img": [
+   "img/decline-db-fly-start.webp",
+   "img/decline-db-fly-peak.webp"
+  ],
+  "pasos": [
+   "Túmbate en un banco declinado sosteniendo mancuernas sobre el pecho.",
+   "Con una ligera flexión de codos, baja las mancuernas ampliamente hacia los lados.",
+   "Aprieta el pecho para subirlas de nuevo.",
+   "Repite."
+  ],
+  "tips": [
+   "No extiendas completamente los codos.",
+   "Concéntrate en el estiramiento en la posición inferior."
+  ],
+  "paso": 1
+ },
+ "wide-grip-push-ups": {
+  "n": "Flexiones con Agarre Ancho",
+  "m": "Pecho · Hombro frontal · serratus_anterior",
+  "eq": "Suelo, peso corporal",
+  "img": [
+   "img/wide-grip-push-ups-start.webp",
+   "img/wide-grip-push-ups-peak.webp"
+  ],
+  "pasos": [
+   "Comienza en una plancha alta con las manos más separadas que el ancho de hombros.",
+   "Mantén el cuerpo en línea recta de la cabeza a los talones.",
+   "Baja el pecho hacia el suelo flexionando los codos.",
+   "Mantén el core activado y los glúteos contraídos.",
+   "Empuja de vuelta hasta extender los brazos.",
+   "Repite el número de repeticiones deseado."
+  ],
+  "tips": [
+   "Mantén los codos a unos 45 grados respecto al torso.",
+   "Mantén una línea recta de la cabeza a los talones.",
+   "Baja hasta que el pecho quede cerca del suelo."
+  ]
+ },
+ "banded-lateral-walk": {
+  "n": "Caminata Lateral con Banda",
+  "m": "Glúteo medio · Glúteo mayor · Cuádriceps",
+  "eq": "Banda elástica",
+  "img": [
+   "img/banded-lateral-walk-start.webp",
+   "img/banded-lateral-walk-peak.webp"
+  ],
+  "pasos": [
+   "Coloca una banda circular alrededor de las piernas por encima de las rodillas (o en los tobillos para una versión más difícil).",
+   "Ponte en cuarto de sentadilla: pies a la anchura de los hombros, caderas atrás, pecho alto y rodillas alineadas con los pies.",
+   "Da un paso lateral con un pie directamente hacia el lado contra la tensión de la banda.",
+   "Acerca el pie de atrás hacia el de delante manteniendo la tensión de la banda en todo momento; no dejes que los pies se junten de golpe.",
+   "Sigue dando pasos laterales en una dirección durante las repeticiones o la distancia indicada y luego invierte.",
+   "Permanece abajo todo el rato; no te incorpores entre paso y paso."
+  ],
+  "tips": [
+   "Mantén las puntas de los pies hacia el frente; no dejes que el pie de delante se abra.",
+   "Las caderas se quedan niveladas; no te balancees de lado a lado al caminar.",
+   "Si las rodillas se van hacia dentro, la banda es demasiado dura; usa una más suave."
+  ]
+ },
+ "db-step-up-to-balance": {
+  "n": "Step-Up con Equilibrio y Mancuernas",
+  "m": "Glúteo mayor · Cuádriceps · Antebrazo · Gemelos",
+  "eq": "Banco o cajón + mancuernas",
+  "img": [
+   "img/db-step-up-to-balance-start.webp",
+   "img/db-step-up-to-balance-peak.webp"
+  ],
+  "pasos": [
+   "Ponte de frente a un escalón o banco bajo y estable con una mancuerna en cada mano y los brazos colgando a los costados.",
+   "Apoya un pie completamente sobre el escalón.",
+   "Empuja con todo el pie delantero y estira esa pierna para subir el cuerpo al escalón.",
+   "Mientras subes, lleva la otra rodilla hacia arriba delante de ti hasta que el muslo quede aproximadamente a la altura de la cadera.",
+   "Mantente erguido sobre la pierna de trabajo y sostén la posición con la rodilla arriba un momento sin inclinarte hacia atrás.",
+   "Baja el pie libre de nuevo al suelo con control y luego baja también la pierna de trabajo y repite; cambia de pierna tras las repeticiones previstas."
+  ],
+  "tips": [
+   "Mantén las pesas quietas colgando a los costados; balancearlas o subirlas con los brazos le quita trabajo a las piernas.",
+   "Mantén el tronco erguido y las caderas niveladas durante la pausa en equilibrio, sin inclinarte hacia la rodilla elevada.",
+   "Empieza con pesas ligeras y un escalón bajo; añade carga solo cuando puedas sostener la posición de equilibrio sin tambalearte."
+  ],
+  "paso": 2
+ },
+ "side-plank-leg-lift": {
+  "n": "Plancha Lateral con Elevación de Pierna",
+  "m": "Glúteo medio · Oblicuos · Glúteo mayor · Abdomen",
+  "eq": "Suelo, peso corporal",
+  "img": [
+   "img/side-plank-leg-lift-start.webp",
+   "img/side-plank-leg-lift-peak.webp"
+  ],
+  "pasos": [
+   "Túmbate de lado con el antebrazo en el suelo y el codo bajo el hombro.",
+   "Coloca un pie sobre el otro y eleva las caderas hasta una plancha lateral.",
+   "Desde esta plancha lateral estable, sube la pierna de arriba recta hacia el techo.",
+   "Baja la pierna de forma controlada sin dejar caer las caderas.",
+   "Completa las repeticiones de un lado y luego cambia."
+  ],
+  "tips": [
+   "Mantén las caderas elevadas toda la serie; no dejes que se hundan.",
+   "Guía la elevación de la pierna con el talón, no con la punta.",
+   "Mantén el cuerpo en una sola línea recta de la cabeza al pie de abajo."
+  ]
+ },
+ "bench-leg-pull-in": {
+  "n": "Encogimiento de Piernas en Banco",
+  "m": "Abdomen · Flexores de cadera · Oblicuos",
+  "eq": "Banco plano, peso corporal",
+  "img": [
+   "img/bench-leg-pull-in-start.webp",
+   "img/bench-leg-pull-in-peak.webp"
+  ],
+  "pasos": [
+   "Túmbate boca arriba sobre un banco plano y agárrate a los lados por encima de la cabeza.",
+   "Extiende las piernas rectas con los talones justo por encima de la superficie del banco.",
+   "Lleva las rodillas hacia el pecho levantando ligeramente las caderas del banco.",
+   "Devuelve las piernas a la posición extendida de forma controlada sin apoyar los talones.",
+   "Repite el número de repeticiones indicado."
+  ],
+  "tips": [
+   "Presiona la zona lumbar contra el banco para reducir la participación del psoas.",
+   "Controla la fase excéntrica; no dejes que la gravedad baje las piernas sin control.",
+   "Contrae el abdomen en el punto más alto de cada repetición."
+  ]
+ },
+ "hanging-knee-raise": {
+  "n": "Elevación de Rodillas Colgado",
+  "m": "Flexores de cadera · Abdomen · Antebrazo · Oblicuos",
+  "eq": "Barra de dominadas, peso corporal",
+  "img": [
+   "img/hanging-knee-raise-start.webp",
+   "img/hanging-knee-raise-peak.webp"
+  ],
+  "pasos": [
+   "Cuélgate de una barra con agarre prono y los brazos completamente extendidos.",
+   "Activa el core y sube las rodillas hacia el pecho.",
+   "Mantén brevemente arriba.",
+   "Baja las piernas despacio a la posición inicial.",
+   "Repite el número de repeticiones deseado."
+  ],
+  "tips": [
+   "Evita el balanceo — inicia el movimiento desde el core.",
+   "Exhala al subir las rodillas.",
+   "Progresa a elevaciones de piernas rectas cuando esto resulte fácil."
+  ]
+ },
+ "suitcase-carry": {
+  "n": "Paseo del Maletín",
+  "m": "Antebrazo · Oblicuos · Lumbares · Glúteo medio",
+  "eq": "Una mancuerna o kettlebell",
+  "img": [
+   "img/suitcase-carry-main.webp"
+  ],
+  "pasos": [
+   "Colócate junto a una sola kettlebell o mancuerna, con los pies a la anchura de las caderas.",
+   "Flexiona por la cadera, agarra el asa con una mano e incorpórate con el peso colgando a un costado.",
+   "Lleva ese hombro abajo y atrás, y aprieta el tronco como si fueran a empujarte de lado.",
+   "Camina hacia delante con zancadas normales y regulares, manteniendo el torso erguido y cuadrado en lugar de inclinarte para escapar del peso.",
+   "Mantén el brazo libre relajado junto al cuerpo, sin separarlo como contrapeso.",
+   "Carga la distancia o el tiempo deseados, deja el peso en el suelo de forma controlada y repite por el otro lado."
+  ],
+  "tips": [
+   "Haz la misma distancia por los dos lados. Todo el valor está en la asimetría, y solo funciona si cargas ambas direcciones por igual.",
+   "Si te inclinas hacia el peso o levantas la cadera contraria, el peso es excesivo: esto es ante todo un ejercicio de postura.",
+   "El agarre suele fallar antes que el tronco. Es un efecto de entrenamiento legítimo, pero si siempre es el límite, usa correas en las series pesadas."
+  ],
+  "paso": 2
+ },
+ "single-arm-dumbbell-bench-press": {
+  "n": "Press de Banca con Mancuerna a Un Brazo",
+  "m": "Pecho · Tríceps · Hombro frontal · Oblicuos",
+  "eq": "Banco plano + una mancuerna",
+  "img": [
+   "img/single-arm-dumbbell-bench-press-start.webp",
+   "img/single-arm-dumbbell-bench-press-peak.webp"
+  ],
+  "pasos": [
+   "Túmbate en un banco plano con los pies apoyados en el suelo y una mancuerna sujeta con una mano a la altura del pecho.",
+   "Apoya la mano libre sobre el estómago o ábrela hacia un lado para mantener el equilibrio.",
+   "Empuja la mancuerna hacia arriba sobre el pecho hasta que el brazo quede recto.",
+   "Haz una breve pausa arriba sin dejar que el cuerpo gire hacia el brazo que empuja.",
+   "Baja la mancuerna despacio hacia el costado del pecho.",
+   "Completa las repeticiones de un lado y luego cambia de brazo."
+  ],
+  "tips": [
+   "Aprieta los glúteos y mantén los omóplatos pegados al banco para resistir la rotación.",
+   "Baja hacia el costado del pecho, con el codo a unos 45 grados del cuerpo.",
+   "Usa un peso que puedas mantener nivelado sin torcerte; añade carga solo cuando ambos lados rindan igual."
+  ],
+  "paso": 2
+ },
+ "bird-dog": {
+  "n": "Bird-Dog",
+  "m": "Lumbares · Core · Glúteo mayor",
+  "eq": "Suelo, peso corporal",
+  "img": [
+   "img/bird-dog-start.webp",
+   "img/bird-dog-peak.webp"
+  ],
+  "pasos": [
+   "Comienza a cuatro patas con la columna en posición neutra.",
+   "Extiende el brazo derecho hacia adelante y la pierna izquierda hacia atrás simultáneamente.",
+   "Aguanta un momento, luego vuelve.",
+   "Repite en el otro lado.",
+   "Alterna."
+  ],
+  "tips": [
+   "Muévete lentamente y con control.",
+   "Mantén las caderas niveladas en todo momento."
+  ]
+ },
+ "push-up": {
+  "n": "Flexiones",
+  "m": "Pecho · Tríceps · Hombro frontal",
+  "eq": "Suelo, peso corporal",
+  "img": [
+   "img/push-up-start.webp",
+   "img/push-up-peak.webp"
+  ],
+  "pasos": [
+   "Comienza en posición de plancha alta con las manos a la anchura de los hombros.",
+   "Baja el cuerpo hasta que el pecho casi toque el suelo.",
+   "Empuja hacia arriba hasta la posición inicial.",
+   "Mantén el cuerpo en línea recta en todo momento.",
+   "Repite."
+  ],
+  "tips": [
+   "Aprieta el abdomen y los glúteos para evitar que la cadera caiga.",
+   "No abras los codos en exceso; mantenlos cerca del torso.",
+   "Mantén el cuello neutro mirando al suelo."
+  ]
+ },
+ "one-arm-seated-cable-row": {
+  "n": "Remo Unilateral Sentado en Polea",
+  "m": "Dorsal · Espalda media · Bíceps · Hombro posterior",
+  "eq": "Polea baja con agarre simple",
+  "img": [
+   "img/one-arm-seated-cable-row-start.webp",
+   "img/one-arm-seated-cable-row-peak.webp"
+  ],
+  "pasos": [
+   "Siéntate en la estación de polea y sujeta el agarre con el brazo de trabajo extendido.",
+   "Apoya bien los pies, siéntate erguido y activa el tronco sin inclinarte hacia atrás.",
+   "Lleva el agarre hacia las costillas bajas mientras retraes el omóplato.",
+   "Haz una pausa breve sin girar el torso ni elevar el hombro.",
+   "Extiende el brazo de forma controlada, termina la serie y cambia de lado."
+  ],
+  "tips": [
+   "Mantén ambos hombros orientados al frente durante toda la repetición.",
+   "Lleva el codo hacia atrás cerca del cuerpo en lugar de flexionar solamente el brazo.",
+   "Deja que el omóplato avance al inicio sin redondear la zona lumbar."
+  ],
+  "paso": 1.25
+ },
+ "bent-over-db-row": {
+  "n": "Remo con Mancuernas Inclinado",
+  "m": "Dorsal · Espalda media · Bíceps · Hombro posterior",
+  "eq": "Mancuernas",
+  "img": [
+   "img/bent-over-db-row-start.webp",
+   "img/bent-over-db-row-peak.webp"
+  ],
+  "pasos": [
+   "Ponte de pie con los pies a la anchura de las caderas, sujetando una mancuerna en cada mano a los lados, con las palmas hacia dentro.",
+   "Flexiona las caderas con la espalda recta hasta que el torso quede a unos 30–45 grados de la horizontal, con las mancuernas colgando justo debajo de los hombros.",
+   "Activa el core y tira de ambas mancuernas hacia arriba y ligeramente atrás, llevando los codos por detrás de las costillas.",
+   "Aprieta la parte alta de la espalda arriba, manteniendo los codos pegados.",
+   "Baja de forma controlada hasta la posición inicial con los brazos completamente estirados.",
+   "Repite el número de repeticiones recomendado."
+  ],
+  "tips": [
+   "El ángulo del torso se mantiene fijo todo el rato; no te incorpores para ayudar al peso.",
+   "Tira hacia las costillas bajas o el abdomen, no hacia el pecho; así mantienes el dorsal cargado.",
+   "Si la lumbar se redondea, flexiona menos y recoloca antes de la siguiente serie."
+  ],
+  "paso": 2
+ },
+ "db-squat": {
+  "n": "Sentadilla con Mancuernas",
+  "m": "Glúteo mayor · Cuádriceps · Isquios",
+  "eq": "Mancuernas",
+  "img": [
+   "img/db-squat-start.webp",
+   "img/db-squat-peak.webp"
+  ],
+  "pasos": [
+   "Pies a la anchura de los hombros, una mancuerna en cada mano a los lados.",
+   "Activa el core y mantén el pecho arriba.",
+   "Baja en sentadilla flexionando caderas y rodillas.",
+   "Desciende hasta que los muslos queden paralelos o más abajo.",
+   "Empuja con los talones para volver a subir."
+  ],
+  "tips": [
+   "Mantén el pecho arriba y la espalda recta.",
+   "Empuja las rodillas en línea con los dedos del pie.",
+   "Usa straps si el agarre se convierte en el factor limitante."
+  ],
+  "paso": 2
+ },
+ "single-leg-extension": {
+  "n": "Extensión de Cuádriceps a Una Pierna",
+  "m": "Cuádriceps",
+  "eq": "Máquina de extensión de cuádriceps (una pierna)",
+  "img": [
+   "img/single-leg-extension-start.webp",
+   "img/single-leg-extension-peak.webp"
+  ],
+  "pasos": [
+   "Siéntate en una máquina de extensión de piernas y coloca un pie bajo la almohadilla.",
+   "Deja el otro pie apoyado en el suelo o colgando.",
+   "Extiende la pierna de trabajo hasta que quede casi recta.",
+   "Contrae el cuádriceps en la parte alta.",
+   "Baja la pierna con control.",
+   "Completa las repeticiones de un lado y luego cambia."
+  ],
+  "tips": [
+   "Contrae con fuerza el cuádriceps en la parte alta del movimiento.",
+   "Baja el peso con control en lugar de dejarlo caer.",
+   "Mantén la espalda plana contra el respaldo."
+  ],
+  "paso": 2.5
+ },
+ "single-leg-lying-leg-curl": {
+  "n": "Curl de Pierna Tumbado a Una Pierna",
+  "m": "Isquios · Gemelos",
+  "eq": "Máquina de curl femoral tumbado (una pierna)",
+  "img": [
+   "img/single-leg-lying-leg-curl-start.webp",
+   "img/single-leg-lying-leg-curl-peak.webp"
+  ],
+  "pasos": [
+   "Acuéstate boca abajo en la máquina de curl de piernas tumbado.",
+   "Coloca un tobillo bajo el apoyo y deja el otro pie fuera de la máquina.",
+   "Flexiona la pierna de trabajo llevando el talón hacia el glúteo.",
+   "Aprieta los isquiotibiales en la parte superior.",
+   "Baja la pierna con control.",
+   "Completa las repeticiones de un lado y luego cambia."
+  ],
+  "tips": [
+   "Mantén la cadera pegada al apoyo durante todo el recorrido.",
+   "Usa un peso que te permita subir y bajar sin tirones.",
+   "Empieza por la pierna más débil y repite igual con la otra."
+  ],
+  "paso": 2.5
+ },
+ "ball-leg-curl": {
+  "n": "Curl de Piernas con Pelota de Estabilidad",
+  "m": "Isquios · Gemelos · Glúteo mayor",
+  "eq": "Fitball, peso corporal",
+  "img": [
+   "img/ball-leg-curl-start.webp",
+   "img/ball-leg-curl-peak.webp"
+  ],
+  "pasos": [
+   "Acuéstate boca arriba en el suelo con los talones y la parte inferior de las pantorrillas sobre la pelota de estabilidad y los brazos estirados para hacer equilibrio.",
+   "Presiona con los talones para elevar las caderas formando una línea recta desde los hombros hasta los tobillos.",
+   "Manteniendo las caderas arriba, flexiona las rodillas para rodar la pelota hacia los glúteos.",
+   "Extiende las piernas de vuelta de forma controlada sin bajar las caderas.",
+   "Completa todas las repeticiones, luego baja las caderas y sepárate de la pelota."
+  ],
+  "tips": [
+   "Las caderas permanecen arriba durante toda la serie: es una combinación de puente y curl.",
+   "Empieza con ambos pies; progresa a una sola pierna cuando se vuelva fácil."
+  ]
+ },
+ "single-leg-romanian-deadlift": {
+  "n": "Peso Muerto Rumano a Una Pierna",
+  "m": "Glúteo mayor · Isquios · Lumbares · Glúteo medio",
+  "eq": "Mancuernas",
+  "img": [
+   "img/single-leg-romanian-deadlift-start.webp",
+   "img/single-leg-romanian-deadlift-peak.webp"
+  ],
+  "pasos": [
+   "Apóyate en una pierna sosteniendo una mancuerna en cada mano frente a los muslos.",
+   "Mantén una ligera flexión en la rodilla de apoyo.",
+   "Bisagra en la cadera extendiendo la pierna libre detrás.",
+   "Baja las mancuernas a lo largo de la pierna de apoyo hasta sentir el estiramiento en los isquiotibiales.",
+   "Empuja con el talón para volver a la posición erguida.",
+   "Completa las repeticiones de un lado y luego cambia."
+  ],
+  "tips": [
+   "Mantén la cadera cuadrada; no dejes que se abra hacia el lado.",
+   "Si pierdes el equilibrio, reduce el rango o usa menos peso.",
+   "Mira un punto fijo en el suelo para estabilizarte."
+  ],
+  "paso": 2
+ },
+ "dumbbell-split-squat": {
+  "n": "Sentadilla en Postura Dividida con Mancuernas",
+  "m": "Glúteo mayor · Cuádriceps · Glúteo medio · Isquios",
+  "eq": "Mancuernas",
+  "img": [
+   "img/dumbbell-split-squat-start.webp",
+   "img/dumbbell-split-squat-peak.webp"
+  ],
+  "pasos": [
+   "Ponte en postura dividida sujetando mancuernas a los costados.",
+   "Mantén el torso erguido y el core contraído.",
+   "Baja la rodilla trasera hacia el suelo doblando ambas rodillas.",
+   "Para cuando el muslo delantero quede paralelo al suelo.",
+   "Empuja a través del talón delantero para volver a la posición de pie.",
+   "Completa las repeticiones de un lado y luego cambia."
+  ],
+  "tips": [
+   "Mantén la mayor parte del peso en la pierna delantera.",
+   "Baja la rodilla trasera recta hacia el suelo.",
+   "Lleva la rodilla delantera sobre los dedos sin dejar que se hunda hacia dentro."
+  ],
+  "paso": 2
+ },
+ "arnold-press": {
+  "n": "Press Arnold",
+  "m": "Hombro frontal · Hombro lateral · serratus_anterior · Trapecio",
+  "eq": "Banco con respaldo + mancuernas",
+  "img": [
+   "img/arnold-press-start.webp",
+   "img/arnold-press-peak.webp"
+  ],
+  "pasos": [
+   "Sostén un par de mancuernas a la altura de los hombros con las palmas mirando hacia ti.",
+   "Empuja las mancuernas sobre la cabeza mientras rotas las palmas hacia adelante.",
+   "Extiende los brazos por completo en la parte superior sin bloquear los codos.",
+   "Invierte el movimiento y rota de vuelta a la posición inicial.",
+   "Repite el número de repeticiones deseado."
+  ],
+  "tips": [
+   "Evita arquear la zona lumbar al empujar hacia arriba.",
+   "Mantén las muñecas firmes y alineadas con los antebrazos.",
+   "Controla la bajada en lugar de dejar caer el peso."
+  ],
+  "paso": 2
+ },
+ "dumbbell-shoulder-press": {
+  "n": "Press de Hombros con Mancuernas",
+  "m": "Hombro frontal · Hombro lateral · Trapecio · Tríceps",
+  "eq": "Mancuernas (de pie)",
+  "img": [
+   "img/dumbbell-shoulder-press-start.webp",
+   "img/dumbbell-shoulder-press-peak.webp"
+  ],
+  "pasos": [
+   "Siéntate o ponte de pie sujetando mancuernas a la altura de los hombros con las palmas mirando hacia adelante.",
+   "Empuja ambas mancuernas por encima de la cabeza hasta que los brazos queden completamente extendidos.",
+   "Mantén el core contraído y evita arquear la zona lumbar.",
+   "Baja las mancuernas de forma controlada hasta la altura de los hombros.",
+   "No dejes que las mancuernas se desplacen detrás de la cabeza.",
+   "Repite el número de repeticiones deseado."
+  ],
+  "tips": [
+   "Sube las mancuernas en línea recta, sin chocarlas arriba.",
+   "Mantén las muñecas firmes, alineadas con los antebrazos.",
+   "Si tu zona lumbar se arquea, reduce el peso."
+  ],
+  "paso": 2
+ },
+ "pike-push-ups": {
+  "n": "Flexiones en Pica",
+  "m": "Hombro frontal · Hombro lateral · Trapecio · Tríceps",
+  "eq": "Suelo, peso corporal",
+  "img": [
+   "img/pike-push-ups-start.webp",
+   "img/pike-push-ups-peak.webp"
+  ],
+  "pasos": [
+   "Comienza en posición de perro boca abajo con las caderas altas y las manos a la anchura de los hombros.",
+   "Acerca los pies a las manos.",
+   "Dobla los codos y baja la cabeza hacia el suelo.",
+   "Mantén las caderas altas durante todo el ejercicio.",
+   "Empuja hacia arriba hasta que los brazos queden completamente extendidos.",
+   "Repite el número de repeticiones deseado."
+  ],
+  "tips": [
+   "Cuanto más altas las caderas, más trabajan los hombros.",
+   "Baja la cabeza hacia un punto ligeramente por delante de las manos.",
+   "Acerca los pies a las manos para progresar hacia las flexiones en pino."
+  ]
+ },
+ "dumbbell-bench-pull": {
+  "n": "Remo en Banco con Mancuernas",
+  "m": "Dorsal · Espalda media · Bíceps · Hombro posterior",
+  "eq": "Banco inclinado + mancuernas (boca abajo)",
+  "img": [
+   "img/dumbbell-bench-pull-start.webp",
+   "img/dumbbell-bench-pull-peak.webp"
+  ],
+  "pasos": [
+   "Túmbate boca abajo en un banco inclinado sujetando mancuernas.",
+   "Deja los brazos colgando rectos hacia abajo.",
+   "Tira de las mancuernas hacia el pecho apretando los omóplatos.",
+   "Baja de forma controlada.",
+   "Repite."
+  ],
+  "tips": [
+   "Mantén el pecho pegado al banco en todo momento.",
+   "Inicia el tirón con la espalda, no con los bíceps.",
+   "Controla la bajada hasta estirar por completo los brazos."
+  ],
+  "paso": 2
+ },
+ "dumbbell-face-pull": {
+  "n": "Face Pull con Mancuernas",
+  "m": "Hombro posterior · Espalda media · Bíceps · Trapecio",
+  "eq": "Mancuernas",
+  "img": [
+   "img/dumbbell-face-pull-start.webp",
+   "img/dumbbell-face-pull-peak.webp"
+  ],
+  "pasos": [
+   "Ponte de pie o siéntate sosteniendo una mancuerna en cada mano con los brazos extendidos hacia adelante.",
+   "Flexiona los codos y tira de las mancuernas hacia la cara.",
+   "Abre los codos hasta la altura de los hombros.",
+   "Contrae el deltoides posterior y la espalda alta en el punto máximo.",
+   "Baja las mancuernas con control.",
+   "Repite el número de repeticiones deseado."
+  ],
+  "tips": [
+   "Lidera el movimiento con los codos, no con las manos.",
+   "Mantén los brazos superiores casi paralelos al suelo.",
+   "Usa un peso ligero y prioriza la técnica."
+  ],
+  "paso": 1
+ },
+ "band-pull-apart": {
+  "n": "Separación de Banda Elástica",
+  "m": "Hombro posterior · Espalda media · Trapecio",
+  "eq": "Banda elástica",
+  "img": [
+   "img/band-pull-apart-start.webp",
+   "img/band-pull-apart-peak.webp"
+  ],
+  "pasos": [
+   "Párate sosteniendo una banda elástica ligera con ambas manos, brazos extendidos al frente a la altura de los hombros.",
+   "Las manos comienzan a la anchura de los hombros, palmas mirando hacia abajo.",
+   "Manteniendo los brazos extendidos, separa la banda llevando las manos hacia los lados.",
+   "Termina con la banda tocando el pecho y los omóplatos juntos.",
+   "Vuelve lentamente a la posición inicial y repite."
+  ],
+  "tips": [
+   "Lidera el movimiento con los meñiques: esto rota externamente los hombros.",
+   "Usa una banda lo suficientemente ligera para hacer 15-30 repeticiones limpias; es un ejercicio preventivo de alto número de repeticiones."
+  ]
+ },
+ "dead-bug-hold": {
+  "n": "Dead Bug Isométrico",
+  "m": "Abdomen · Core · Flexores de cadera",
+  "eq": "Suelo, peso corporal",
+  "img": [
+   "img/dead-bug-hold-main.webp"
+  ],
+  "pasos": [
+   "Túmbate boca arriba con los brazos apuntando al techo y las caderas y rodillas flexionadas a 90 grados.",
+   "Presiona la zona lumbar contra el suelo y mantenla ahí durante toda la serie.",
+   "Extiende un brazo por encima de la cabeza y estira la pierna contraria hasta que ambos queden suspendidos justo sobre el suelo.",
+   "Mantén esa posición extendida durante el tiempo indicado, sin que las costillas se abran ni la espalda se arquee.",
+   "Vuelve al inicio y repite con el otro brazo y la otra pierna."
+  ],
+  "tips": [
+   "Si la zona lumbar se despega del suelo, mantén la pierna más alta en lugar de buscar el suelo.",
+   "Exhala despacio durante el mantenimiento; aguantar la respiración es lo que suele romper la tensión del tronco.",
+   "Mantén el brazo extendido junto a la oreja, no abierto hacia el lado."
+  ],
+  "tipo": "tiempo"
+ },
+ "bear-plank-hold": {
+  "n": "Plancha del Oso Isométrica",
+  "m": "Abdomen · Core · Hombro frontal · Oblicuos",
+  "eq": "Suelo, peso corporal",
+  "img": [
+   "img/bear-plank-hold-main.webp"
+  ],
+  "pasos": [
+   "Colócate a cuatro apoyos con las manos bajo los hombros y las rodillas bajo la cadera.",
+   "Apoya las puntas de los pies en el suelo y contrae el abdomen para que la espalda quede plana.",
+   "Empuja con las manos y levanta las rodillas unos 5 cm del suelo.",
+   "Mantén la posición con la cadera nivelada y la cabeza alineada con la columna.",
+   "Respira con regularidad y luego baja las rodillas para descansar."
+  ],
+  "tips": [
+   "Mantén las rodillas cerca del suelo; si las subes más, el ejercicio se convierte en una pica.",
+   "Separa los dedos de las manos y empuja el suelo para que los hombros no se hundan.",
+   "Mantén el cuello largo y mira al suelo, un poco por delante de las manos."
+  ],
+  "tipo": "tiempo"
+ },
+ "incline-plank-hold": {
+  "n": "Plancha Inclinada Isométrica",
+  "m": "Abdomen · Core · Hombro frontal · Oblicuos",
+  "eq": "Banco plano, peso corporal",
+  "img": [
+   "img/incline-plank-hold-main.webp"
+  ],
+  "pasos": [
+   "Apoya los antebrazos en un banco plano, con los codos justo debajo de los hombros.",
+   "Lleva los pies hacia atrás hasta que el cuerpo forme una línea recta de la cabeza a los talones.",
+   "Aprieta los glúteos y lleva el ombligo hacia la columna para mantener las caderas niveladas.",
+   "Mantén el cuello largo y mira un punto del banco algo más adelante de tus manos.",
+   "Mantén la posición durante el tiempo previsto respirando con regularidad.",
+   "Acerca los pies para terminar."
+  ],
+  "tips": [
+   "No dejes que las caderas se hundan hacia el banco ni que se eleven en pico; el cuerpo debe mantenerse en una sola línea recta.",
+   "Presiona los antebrazos contra el banco y empújalo lejos de ti para mantener los omóplatos separados.",
+   "Lleva los pies más atrás para hacerla más difícil, o más cerca para hacerla más fácil; asegúrate de que el banco no pueda deslizarse."
+  ],
+  "tipo": "tiempo"
+ },
+ "bench-hollow-hold": {
+  "n": "Mantenimiento del Cuerpo Hueco en Banco",
+  "m": "Flexores de cadera · Abdomen · Oblicuos · Cuádriceps",
+  "eq": "Banco plano + mancuerna ligera",
+  "img": [
+   "img/bench-hollow-hold-main.webp"
+  ],
+  "pasos": [
+   "Túmbate boca arriba en un banco plano con los glúteos y la zona lumbar sobre el pad y las piernas extendidas.",
+   "Estira los brazos por encima de la cabeza, junto a las orejas.",
+   "Contrae el abdomen y presiona la zona lumbar contra el banco.",
+   "Levanta los hombros y las piernas rectas unos pocos centímetros para formar un hueco poco profundo.",
+   "Mantén la posición respirando con regularidad y luego baja para descansar."
+  ],
+  "tips": [
+   "Si la zona lumbar se despega del pad, sube más las piernas o flexiona ligeramente las rodillas.",
+   "Mantén las costillas hacia abajo y el cuello relajado.",
+   "Aguanta solo el tiempo en que puedas mantener la zona lumbar plana.",
+   "Para cargarlo, sujeta una mancuerna ligera con los brazos estirados por encima de la cabeza."
+  ],
+  "paso": 1,
+  "tipo": "tiempo"
+ },
+ "walking": {
+  "n": "Caminar",
+  "m": "Gemelos · Cuádriceps · Glúteo mayor · Isquios",
+  "eq": "Peso corporal: a paso rápido, en la calle o un pasillo",
+  "img": [
+   "img/walking-main.webp"
+  ],
+  "pasos": [
+   "Ponte erguido, con el peso sobre la parte media de los pies y los hombros relajados, sin llevarlos hacia atrás.",
+   "Da un paso al frente y apoya primero el talón, luego rueda sobre el pie y empuja con la almohadilla y los dedos.",
+   "Mantén al menos un pie en el suelo en todo momento — en cuanto ambos se despegan estás corriendo, no caminando.",
+   "Deja que los brazos oscilen con naturalidad desde el hombro, brazo contrario a pierna contraria, con los codos ligeramente flexionados.",
+   "Mira al frente en lugar de a los pies y respira con un ritmo constante y sostenible.",
+   "Continúa el tiempo o la distancia deseados, eligiendo un ritmo al que todavía podrías mantener una conversación."
+  ],
+  "tips": [
+   "El ritmo lo es todo aquí. Un paseo y una caminata enérgica son estímulos distintos, así que elige uno a propósito en vez de dejarte llevar.",
+   "Alarga el empuje por detrás en lugar de estirar más hacia delante: la zancada larga te hace aterrizar con la pierna recta y frena cada paso.",
+   "Es el único trabajo de acondicionamiento que puedes hacer a diario sin necesitar recuperarte de él, y por eso merece la pena programarlo en vez de dejarlo al azar."
   ],
   "tipo": "cardio"
  }

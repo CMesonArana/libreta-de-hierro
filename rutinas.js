@@ -1,4 +1,4 @@
-// Rutinas. Cada ejercicio: id (en EX), series, reps, descanso (s), alts (hasta 3), grupo (superserie/circuito), nota.
+// Rutinas. Cada ejercicio: id (en EX), series, reps, descanso (s), alts (6: al menos una con mancuernas y banco y otra sin máquina), grupo (superserie/circuito), nota.
 // Superseries: el primero lleva 20 s de descanso (lo que tardas en cambiar de máquina) y el segundo el descanso del par.
 // Base: ver informe sota (2026-10-24) en README.md.
 
@@ -36,52 +36,52 @@ const PROGRAMAS = {
     planes: {
       "3": { dias: [
         { nombre: "Pecho y glúteo", foco: "Pecho superior, glúteo, espalda", minutos: 55, calentamiento: CAL_SUP, ejercicios: [
-          { id: "smith-machine-incline-bench-press", series: 4, reps: "6-10", descanso: 20, grupo: "Superserie 1 · A", alts: ["incline-db-press", "incline-bench-press", "chest-press-machine"], nota: "Banco a 30-45°. Baja la barra a la parte alta del pecho." },
-          { id: "lat-pulldown", series: 3, reps: "8-12", descanso: 90, grupo: "Superserie 1 · B", alts: ["one-arm-lat-pulldown", "assisted-pull-ups", "v-bar-lat-pulldown"] },
-          { id: "plate-loaded-glute-drive", series: 4, reps: "8-12", descanso: 120, alts: ["smith-machine-hip-thrust", "hip-thrust", "dumbbell-hip-thrust"], nota: "Pausa de 1 s arriba apretando glúteo." },
-          { id: "cable-lateral-raise", series: 3, reps: "12-20", descanso: 20, grupo: "Superserie 2 · A", alts: ["lateral-raise", "plate-loaded-lateral-raise", "seated-dumbbell-lateral-raise"] },
-          { id: "pec-deck", series: 3, reps: "10-15", descanso: 60, grupo: "Superserie 2 · B", alts: ["machine-chest-fly", "cable-fly", "db-fly"] },
-          { id: "hip-abduction", series: 3, reps: "15-20", descanso: 20, grupo: "Superserie 3 · A", alts: ["banded-seated-hip-abduction", "side-lying-hip-abduction", "cable-kickback"], nota: "Inclínate un poco hacia delante para cargar más el glúteo." },
-          { id: "cable-crunch", series: 3, reps: "10-15", descanso: 60, grupo: "Superserie 3 · B", alts: ["machine-seated-crunch", "decline-crunch", "crunches"] }
+          { id: "smith-machine-incline-bench-press", series: 4, reps: "6-10", descanso: 20, grupo: "Superserie 1 · A", alts: ["incline-db-press", "incline-bench-press", "chest-press-machine", "cable-chest-press", "incline-dumbbell-fly", "decline-push-up"], nota: "Banco a 30-45°. Baja la barra a la parte alta del pecho." },
+          { id: "lat-pulldown", series: 3, reps: "8-12", descanso: 90, grupo: "Superserie 1 · B", alts: ["assisted-pull-ups", "one-arm-lat-pulldown", "v-bar-lat-pulldown", "db-pullover", "band-assisted-pull-ups", "negative-pull-ups"] },
+          { id: "plate-loaded-glute-drive", series: 4, reps: "8-12", descanso: 120, alts: ["smith-machine-hip-thrust", "hip-thrust", "cable-pull-through", "dumbbell-hip-thrust", "single-leg-hip-thrust", "glute-bridge"], nota: "Pausa de 1 s arriba apretando glúteo." },
+          { id: "cable-lateral-raise", series: 3, reps: "12-20", descanso: 20, grupo: "Superserie 2 · A", alts: ["lateral-raise", "plate-loaded-lateral-raise", "seated-dumbbell-lateral-raise", "side-lying-lateral-raise", "cable-upright-row", "dumbbell-upright-row"] },
+          { id: "pec-deck", series: 3, reps: "10-15", descanso: 60, grupo: "Superserie 2 · B", alts: ["machine-chest-fly", "cable-fly", "db-fly", "incline-dumbbell-fly", "decline-db-fly", "wide-grip-push-ups"] },
+          { id: "hip-abduction", series: 3, reps: "15-20", descanso: 20, grupo: "Superserie 3 · A", alts: ["banded-seated-hip-abduction", "cable-kickback", "banded-lateral-walk", "db-step-up-to-balance", "side-lying-hip-abduction", "side-plank-leg-lift"], nota: "Inclínate un poco hacia delante para cargar más el glúteo." },
+          { id: "cable-crunch", series: 3, reps: "10-15", descanso: 60, grupo: "Superserie 3 · B", alts: ["machine-seated-crunch", "ab-wheel-rollout", "decline-crunch", "bench-leg-pull-in", "crunches", "dead-bug"] }
         ]},
         { nombre: "Hombro y pierna", foco: "Hombros, piernas, espalda", minutos: 55, calentamiento: CAL_INF, ejercicios: [
-          { id: "machine-shoulder-press", series: 3, reps: "8-12", descanso: 20, grupo: "Superserie 1 · A", alts: ["seated-db-press", "smith-machine-shoulder-press", "landmine-press"] },
-          { id: "chest-supported-machine-row", series: 3, reps: "8-12", descanso: 90, grupo: "Superserie 1 · B", alts: ["seated-cable-row", "chest-supported-db-row", "single-arm-db-row"] },
-          { id: "leg-press", series: 3, reps: "10-15", descanso: 120, alts: ["hack-squat", "smith-machine-squat", "goblet-squat"], nota: "Pies altos y anchos en la plataforma y baja hondo: más glúteo." },
-          { id: "lateral-raise", series: 4, reps: "12-20", descanso: 20, grupo: "Superserie 2 · A", alts: ["cable-lateral-raise", "plate-loaded-lateral-raise", "side-lying-lateral-raise"] },
-          { id: "seated-leg-curl", series: 3, reps: "10-15", descanso: 60, grupo: "Superserie 2 · B", alts: ["leg-curl", "dumbbell-romanian-deadlift", "back-extension"] },
-          { id: "face-pull", series: 3, reps: "12-15", descanso: 20, grupo: "Superserie 3 · A", alts: ["machine-reverse-fly", "cable-reverse-fly", "dumbbell-reverse-fly"], nota: "Hombro posterior: da forma redonda al hombro visto de lado." },
-          { id: "captains-chair-leg-raise", series: 3, reps: "10-15", descanso: 60, grupo: "Superserie 3 · B", alts: ["hanging-leg-raise", "reverse-crunches", "lying-leg-raise"] }
+          { id: "machine-shoulder-press", series: 3, reps: "8-12", descanso: 20, grupo: "Superserie 1 · A", alts: ["seated-db-press", "smith-machine-shoulder-press", "landmine-press", "arnold-press", "dumbbell-shoulder-press", "pike-push-ups"] },
+          { id: "chest-supported-machine-row", series: 3, reps: "8-12", descanso: 90, grupo: "Superserie 1 · B", alts: ["seated-cable-row", "t-bar-row", "one-arm-seated-cable-row", "chest-supported-db-row", "single-arm-db-row", "bent-over-db-row"] },
+          { id: "leg-press", series: 3, reps: "10-15", descanso: 120, alts: ["hack-squat", "horizontal-leg-press", "smith-machine-squat", "bulgarian-split-squat", "goblet-squat", "step-ups"], nota: "Pies altos y anchos en la plataforma y baja hondo: más glúteo." },
+          { id: "lateral-raise", series: 4, reps: "12-20", descanso: 20, grupo: "Superserie 2 · A", alts: ["cable-lateral-raise", "plate-loaded-lateral-raise", "side-lying-lateral-raise", "seated-dumbbell-lateral-raise", "cable-upright-row", "dumbbell-upright-row"] },
+          { id: "seated-leg-curl", series: 3, reps: "10-15", descanso: 60, grupo: "Superserie 2 · B", alts: ["leg-curl", "single-leg-lying-leg-curl", "ball-leg-curl", "dumbbell-hip-thrust", "dumbbell-romanian-deadlift", "back-extension"] },
+          { id: "face-pull", series: 3, reps: "12-15", descanso: 20, grupo: "Superserie 3 · A", alts: ["machine-reverse-fly", "cable-reverse-fly", "dumbbell-bench-pull", "dumbbell-reverse-fly", "dumbbell-face-pull", "band-pull-apart"], nota: "Hombro posterior: da forma redonda al hombro visto de lado." },
+          { id: "captains-chair-leg-raise", series: 3, reps: "10-15", descanso: 60, grupo: "Superserie 3 · B", alts: ["hanging-leg-raise", "hanging-knee-raise", "decline-crunch", "bench-leg-pull-in", "reverse-crunches", "lying-leg-raise"] }
         ]},
         { nombre: "Pecho, glúteo y abdomen", foco: "Pecho, glúteo, abdomen", minutos: 58, calentamiento: CAL_SUP, ejercicios: [
-          { id: "chest-press-machine", series: 4, reps: "8-12", descanso: 20, grupo: "Superserie 1 · A", alts: ["db-bench-press", "smith-machine-bench-press", "bench-press"] },
-          { id: "seated-cable-row", series: 3, reps: "10-12", descanso: 90, grupo: "Superserie 1 · B", alts: ["chest-supported-machine-row", "wide-grip-seated-cable-row", "t-bar-row"] },
-          { id: "dumbbell-romanian-deadlift", series: 3, reps: "8-12", descanso: 120, alts: ["romanian-deadlift", "back-extension", "cable-pull-through"], nota: "Cadera atrás, espalda neutra; baja hasta notar tensión en los isquios." },
-          { id: "bulgarian-split-squat", series: 3, reps: "8-12", descanso: 60, alts: ["smith-machine-bulgarian-split", "reverse-lunge", "step-ups"], nota: "Reps por pierna. Torso algo inclinado hacia delante = más glúteo." },
-          { id: "cable-fly", series: 3, reps: "12-15", descanso: 20, grupo: "Superserie 2 · A", alts: ["pec-deck", "machine-chest-fly", "incline-dumbbell-fly"] },
-          { id: "plate-loaded-lateral-raise", series: 3, reps: "12-20", descanso: 60, grupo: "Superserie 2 · B", alts: ["cable-lateral-raise", "lateral-raise", "seated-dumbbell-lateral-raise"] },
-          { id: "machine-seated-crunch", series: 3, reps: "10-15", descanso: 20, grupo: "Superserie 3 · A", alts: ["cable-crunch", "decline-crunch", "ab-wheel-rollout"] },
-          { id: "cable-pallof-press", series: 3, reps: "10-12", descanso: 45, grupo: "Superserie 3 · B", alts: ["side-plank", "dumbbell-side-bend", "dead-bug"], nota: "Reps por lado. Oblicuos: que el cable no te gire." }
+          { id: "chest-press-machine", series: 4, reps: "8-12", descanso: 20, grupo: "Superserie 1 · A", alts: ["db-bench-press", "smith-machine-bench-press", "bench-press", "cable-chest-press", "push-up", "incline-push-ups"] },
+          { id: "seated-cable-row", series: 3, reps: "10-12", descanso: 90, grupo: "Superserie 1 · B", alts: ["chest-supported-machine-row", "wide-grip-seated-cable-row", "t-bar-row", "chest-supported-db-row", "single-arm-db-row", "bent-over-db-row"] },
+          { id: "dumbbell-romanian-deadlift", series: 3, reps: "8-12", descanso: 120, alts: ["romanian-deadlift", "back-extension", "cable-pull-through", "seated-leg-curl", "dumbbell-hip-thrust", "single-leg-romanian-deadlift"], nota: "Cadera atrás, espalda neutra; baja hasta notar tensión en los isquios." },
+          { id: "bulgarian-split-squat", series: 3, reps: "8-12", descanso: 60, alts: ["smith-machine-bulgarian-split", "leg-press", "db-step-up-to-balance", "reverse-lunge", "dumbbell-split-squat", "step-ups"], nota: "Reps por pierna. Torso algo inclinado hacia delante = más glúteo." },
+          { id: "cable-fly", series: 3, reps: "12-15", descanso: 20, grupo: "Superserie 2 · A", alts: ["pec-deck", "machine-chest-fly", "incline-dumbbell-fly", "db-fly", "decline-db-fly", "wide-grip-push-ups"] },
+          { id: "plate-loaded-lateral-raise", series: 3, reps: "12-20", descanso: 60, grupo: "Superserie 2 · B", alts: ["cable-lateral-raise", "lateral-raise", "seated-dumbbell-lateral-raise", "side-lying-lateral-raise", "cable-upright-row", "dumbbell-upright-row"] },
+          { id: "machine-seated-crunch", series: 3, reps: "10-15", descanso: 20, grupo: "Superserie 3 · A", alts: ["cable-crunch", "ab-wheel-rollout", "decline-crunch", "bench-leg-pull-in", "crunches", "reverse-crunches"] },
+          { id: "cable-pallof-press", series: 3, reps: "10-12", descanso: 45, grupo: "Superserie 3 · B", alts: ["side-plank", "dead-bug", "bird-dog", "single-arm-dumbbell-bench-press", "suitcase-carry", "dumbbell-side-bend"], nota: "Reps por lado. Oblicuos: que el cable no te gire." }
         ]}
       ]},
       "2": { dias: [
         { nombre: "Pecho y glúteo", foco: "Pecho superior, glúteo, espalda", minutos: 57, calentamiento: CAL_SUP, ejercicios: [
-          { id: "smith-machine-incline-bench-press", series: 4, reps: "6-10", descanso: 20, grupo: "Superserie 1 · A", alts: ["incline-db-press", "incline-bench-press", "chest-press-machine"], nota: "Banco a 30-45°. Baja la barra a la parte alta del pecho." },
-          { id: "lat-pulldown", series: 3, reps: "8-12", descanso: 90, grupo: "Superserie 1 · B", alts: ["one-arm-lat-pulldown", "assisted-pull-ups", "v-bar-lat-pulldown"] },
-          { id: "plate-loaded-glute-drive", series: 4, reps: "8-12", descanso: 120, alts: ["smith-machine-hip-thrust", "hip-thrust", "dumbbell-hip-thrust"], nota: "Pausa de 1 s arriba apretando glúteo." },
-          { id: "cable-lateral-raise", series: 4, reps: "12-20", descanso: 20, grupo: "Superserie 2 · A", alts: ["lateral-raise", "plate-loaded-lateral-raise", "seated-dumbbell-lateral-raise"] },
-          { id: "pec-deck", series: 3, reps: "10-15", descanso: 60, grupo: "Superserie 2 · B", alts: ["machine-chest-fly", "cable-fly", "db-fly"] },
-          { id: "hip-abduction", series: 3, reps: "15-20", descanso: 20, grupo: "Superserie 3 · A", alts: ["banded-seated-hip-abduction", "side-lying-hip-abduction", "cable-kickback"] },
-          { id: "cable-crunch", series: 3, reps: "10-15", descanso: 60, grupo: "Superserie 3 · B", alts: ["machine-seated-crunch", "decline-crunch", "crunches"] }
+          { id: "smith-machine-incline-bench-press", series: 4, reps: "6-10", descanso: 20, grupo: "Superserie 1 · A", alts: ["incline-db-press", "incline-bench-press", "chest-press-machine", "cable-chest-press", "incline-dumbbell-fly", "decline-push-up"], nota: "Banco a 30-45°. Baja la barra a la parte alta del pecho." },
+          { id: "lat-pulldown", series: 3, reps: "8-12", descanso: 90, grupo: "Superserie 1 · B", alts: ["assisted-pull-ups", "one-arm-lat-pulldown", "v-bar-lat-pulldown", "db-pullover", "band-assisted-pull-ups", "negative-pull-ups"] },
+          { id: "plate-loaded-glute-drive", series: 4, reps: "8-12", descanso: 120, alts: ["smith-machine-hip-thrust", "hip-thrust", "cable-pull-through", "dumbbell-hip-thrust", "single-leg-hip-thrust", "glute-bridge"], nota: "Pausa de 1 s arriba apretando glúteo." },
+          { id: "cable-lateral-raise", series: 4, reps: "12-20", descanso: 20, grupo: "Superserie 2 · A", alts: ["lateral-raise", "plate-loaded-lateral-raise", "seated-dumbbell-lateral-raise", "side-lying-lateral-raise", "cable-upright-row", "dumbbell-upright-row"] },
+          { id: "pec-deck", series: 3, reps: "10-15", descanso: 60, grupo: "Superserie 2 · B", alts: ["machine-chest-fly", "cable-fly", "db-fly", "incline-dumbbell-fly", "decline-db-fly", "wide-grip-push-ups"] },
+          { id: "hip-abduction", series: 3, reps: "15-20", descanso: 20, grupo: "Superserie 3 · A", alts: ["banded-seated-hip-abduction", "cable-kickback", "banded-lateral-walk", "db-step-up-to-balance", "side-lying-hip-abduction", "side-plank-leg-lift"] },
+          { id: "cable-crunch", series: 3, reps: "10-15", descanso: 60, grupo: "Superserie 3 · B", alts: ["machine-seated-crunch", "ab-wheel-rollout", "decline-crunch", "bench-leg-pull-in", "crunches", "dead-bug"] }
         ]},
         { nombre: "Pecho, hombro y pierna", foco: "Pecho, hombros, piernas", minutos: 58, calentamiento: CAL_INF, ejercicios: [
-          { id: "chest-press-machine", series: 4, reps: "8-12", descanso: 20, grupo: "Superserie 1 · A", alts: ["db-bench-press", "smith-machine-bench-press", "bench-press"] },
-          { id: "chest-supported-machine-row", series: 3, reps: "8-12", descanso: 90, grupo: "Superserie 1 · B", alts: ["seated-cable-row", "chest-supported-db-row", "single-arm-db-row"] },
-          { id: "leg-press", series: 3, reps: "10-15", descanso: 120, alts: ["hack-squat", "smith-machine-squat", "goblet-squat"], nota: "Pies altos y anchos en la plataforma y baja hondo: más glúteo." },
-          { id: "machine-shoulder-press", series: 3, reps: "8-12", descanso: 20, grupo: "Superserie 2 · A", alts: ["seated-db-press", "smith-machine-shoulder-press", "landmine-press"] },
-          { id: "seated-leg-curl", series: 3, reps: "10-15", descanso: 75, grupo: "Superserie 2 · B", alts: ["leg-curl", "dumbbell-romanian-deadlift", "back-extension"] },
-          { id: "lateral-raise", series: 4, reps: "12-20", descanso: 20, grupo: "Superserie 3 · A", alts: ["cable-lateral-raise", "plate-loaded-lateral-raise", "side-lying-lateral-raise"] },
-          { id: "captains-chair-leg-raise", series: 3, reps: "10-15", descanso: 60, grupo: "Superserie 3 · B", alts: ["hanging-leg-raise", "reverse-crunches", "lying-leg-raise"] }
+          { id: "chest-press-machine", series: 4, reps: "8-12", descanso: 20, grupo: "Superserie 1 · A", alts: ["db-bench-press", "smith-machine-bench-press", "bench-press", "cable-chest-press", "push-up", "incline-push-ups"] },
+          { id: "chest-supported-machine-row", series: 3, reps: "8-12", descanso: 90, grupo: "Superserie 1 · B", alts: ["seated-cable-row", "t-bar-row", "one-arm-seated-cable-row", "chest-supported-db-row", "single-arm-db-row", "bent-over-db-row"] },
+          { id: "leg-press", series: 3, reps: "10-15", descanso: 120, alts: ["hack-squat", "horizontal-leg-press", "smith-machine-squat", "bulgarian-split-squat", "goblet-squat", "step-ups"], nota: "Pies altos y anchos en la plataforma y baja hondo: más glúteo." },
+          { id: "machine-shoulder-press", series: 3, reps: "8-12", descanso: 20, grupo: "Superserie 2 · A", alts: ["seated-db-press", "smith-machine-shoulder-press", "landmine-press", "arnold-press", "dumbbell-shoulder-press", "pike-push-ups"] },
+          { id: "seated-leg-curl", series: 3, reps: "10-15", descanso: 75, grupo: "Superserie 2 · B", alts: ["leg-curl", "single-leg-lying-leg-curl", "ball-leg-curl", "dumbbell-hip-thrust", "dumbbell-romanian-deadlift", "back-extension"] },
+          { id: "lateral-raise", series: 4, reps: "12-20", descanso: 20, grupo: "Superserie 3 · A", alts: ["cable-lateral-raise", "plate-loaded-lateral-raise", "side-lying-lateral-raise", "seated-dumbbell-lateral-raise", "cable-upright-row", "dumbbell-upright-row"] },
+          { id: "captains-chair-leg-raise", series: 3, reps: "10-15", descanso: 60, grupo: "Superserie 3 · B", alts: ["hanging-leg-raise", "hanging-knee-raise", "decline-crunch", "bench-leg-pull-in", "reverse-crunches", "lying-leg-raise"] }
         ]}
       ]}
     }
@@ -96,54 +96,54 @@ const PROGRAMAS = {
     planes: {
       "3": { dias: [
         { nombre: "Fuerza + intervalos", foco: "Cuerpo entero + cardio fuerte", minutos: 58, calentamiento: CAL_INF, ejercicios: [
-          { id: "leg-press", series: 3, reps: "10-15", descanso: 20, grupo: "Superserie 1 · A", alts: ["horizontal-leg-press", "hack-squat", "goblet-squat"] },
-          { id: "lat-pulldown", series: 3, reps: "10-12", descanso: 90, grupo: "Superserie 1 · B", alts: ["assisted-pull-ups", "one-arm-lat-pulldown", "v-bar-lat-pulldown"] },
-          { id: "chest-press-machine", series: 3, reps: "10-12", descanso: 20, grupo: "Superserie 2 · A", alts: ["db-bench-press", "smith-machine-bench-press", "incline-push-ups"] },
-          { id: "seated-leg-curl", series: 3, reps: "10-15", descanso: 75, grupo: "Superserie 2 · B", alts: ["leg-curl", "dumbbell-romanian-deadlift", "back-extension"] },
-          { id: "machine-shoulder-press", series: 2, reps: "10-12", descanso: 20, grupo: "Superserie 3 · A", alts: ["seated-db-press", "smith-machine-shoulder-press", "landmine-press"] },
-          { id: "cable-crunch", series: 2, reps: "12-15", descanso: 60, grupo: "Superserie 3 · B", alts: ["machine-seated-crunch", "dead-bug", "crunches"] },
-          { id: "stationary-bike", tipo: "cardio", minutos: 15, zona: "8/10", int: { trabajo: 60, descanso: 90, rondas: 6 }, alts: ["air-bike", "rowing-machine", "elliptical-trainer"],
+          { id: "leg-press", series: 3, reps: "10-15", descanso: 20, grupo: "Superserie 1 · A", alts: ["hack-squat", "horizontal-leg-press", "smith-machine-squat", "bulgarian-split-squat", "goblet-squat", "step-ups"] },
+          { id: "lat-pulldown", series: 3, reps: "10-12", descanso: 90, grupo: "Superserie 1 · B", alts: ["assisted-pull-ups", "one-arm-lat-pulldown", "v-bar-lat-pulldown", "db-pullover", "band-assisted-pull-ups", "negative-pull-ups"] },
+          { id: "chest-press-machine", series: 3, reps: "10-12", descanso: 20, grupo: "Superserie 2 · A", alts: ["db-bench-press", "smith-machine-bench-press", "bench-press", "cable-chest-press", "push-up", "incline-push-ups"] },
+          { id: "seated-leg-curl", series: 3, reps: "10-15", descanso: 75, grupo: "Superserie 2 · B", alts: ["leg-curl", "single-leg-lying-leg-curl", "ball-leg-curl", "dumbbell-hip-thrust", "dumbbell-romanian-deadlift", "back-extension"] },
+          { id: "machine-shoulder-press", series: 2, reps: "10-12", descanso: 20, grupo: "Superserie 3 · A", alts: ["seated-db-press", "smith-machine-shoulder-press", "landmine-press", "arnold-press", "dumbbell-shoulder-press", "pike-push-ups"] },
+          { id: "cable-crunch", series: 2, reps: "12-15", descanso: 60, grupo: "Superserie 3 · B", alts: ["machine-seated-crunch", "ab-wheel-rollout", "decline-crunch", "bench-leg-pull-in", "crunches", "dead-bug"] },
+          { id: "stationary-bike", tipo: "cardio", minutos: 15, zona: "8/10", int: { trabajo: 60, descanso: 90, rondas: 6 }, alts: ["elliptical-trainer", "rowing-machine", "air-bike", "incline-treadmill-walk", "db-step-up-to-balance", "walking"],
             consejo: "Intervalos: 1 min fuerte (solo frases cortas) + 1:30 suave. Semanas 1-3: haz 15 min continuos a ritmo moderado. Al empezar con intervalos, 4 × 30 s fuerte." }
         ]},
         { nombre: "Fuerza + cardio suave", foco: "Cuerpo entero + caminar en cuesta", minutos: 58, calentamiento: CAL_INF, ejercicios: [
-          { id: "plate-loaded-glute-drive", series: 3, reps: "10-15", descanso: 20, grupo: "Superserie 1 · A", alts: ["smith-machine-hip-thrust", "dumbbell-hip-thrust", "glute-bridge"] },
-          { id: "seated-cable-row", series: 3, reps: "10-12", descanso: 90, grupo: "Superserie 1 · B", alts: ["chest-supported-machine-row", "chest-supported-db-row", "single-arm-db-row"] },
-          { id: "goblet-squat", series: 3, reps: "10-12", descanso: 20, grupo: "Superserie 2 · A", alts: ["leg-press", "smith-machine-squat", "step-ups"], nota: "Si cuesta bajar, siéntate en un banco y levántate (sentadilla al banco)." },
-          { id: "incline-db-press", series: 3, reps: "10-12", descanso: 90, grupo: "Superserie 2 · B", alts: ["chest-press-machine", "smith-machine-incline-bench-press", "incline-push-ups"] },
-          { id: "leg-extension", series: 2, reps: "12-15", descanso: 20, grupo: "Superserie 3 · A", alts: ["reverse-lunge", "step-ups", "leg-press"] },
-          { id: "plank", tipo: "tiempo", series: 2, segundos: 30, descanso: 45, grupo: "Superserie 3 · B", alts: ["dead-bug", "side-plank", "cable-pallof-press"], nota: "Pulsa ▶ y aguanta: el temporizador cuenta los segundos y luego el descanso." },
-          { id: "incline-treadmill-walk", tipo: "cardio", minutos: 18, zona: "5-6/10", alts: ["elliptical-trainer", "stationary-bike", "stair-climber"],
+          { id: "plate-loaded-glute-drive", series: 3, reps: "10-15", descanso: 20, grupo: "Superserie 1 · A", alts: ["smith-machine-hip-thrust", "hip-thrust", "cable-pull-through", "dumbbell-hip-thrust", "single-leg-hip-thrust", "glute-bridge"] },
+          { id: "seated-cable-row", series: 3, reps: "10-12", descanso: 90, grupo: "Superserie 1 · B", alts: ["chest-supported-machine-row", "wide-grip-seated-cable-row", "t-bar-row", "chest-supported-db-row", "single-arm-db-row", "bent-over-db-row"] },
+          { id: "goblet-squat", series: 3, reps: "10-12", descanso: 20, grupo: "Superserie 2 · A", alts: ["leg-press", "hack-squat", "smith-machine-squat", "bulgarian-split-squat", "step-ups", "db-squat"], nota: "Si cuesta bajar, siéntate en un banco y levántate (sentadilla al banco)." },
+          { id: "incline-db-press", series: 3, reps: "10-12", descanso: 90, grupo: "Superserie 2 · B", alts: ["chest-press-machine", "smith-machine-incline-bench-press", "cable-chest-press", "db-bench-press", "incline-push-ups", "push-up"] },
+          { id: "leg-extension", series: 2, reps: "12-15", descanso: 20, grupo: "Superserie 3 · A", alts: ["single-leg-extension", "leg-press", "smith-machine-squat", "bulgarian-split-squat", "reverse-lunge", "step-ups"] },
+          { id: "plank", tipo: "tiempo", series: 2, segundos: 30, descanso: 45, grupo: "Superserie 3 · B", alts: ["side-plank", "dead-bug-hold", "incline-plank-hold", "bench-hollow-hold", "suitcase-carry", "bear-plank-hold"], nota: "Pulsa ▶ y aguanta: el temporizador cuenta los segundos y luego el descanso." },
+          { id: "incline-treadmill-walk", tipo: "cardio", minutos: 18, zona: "5-6/10", alts: ["elliptical-trainer", "stationary-bike", "stair-climber", "rowing-machine", "db-step-up-to-balance", "walking"],
             consejo: "Ritmo moderado: puedes hablar con frases completas. Inclinación 4-8 % y velocidad de paseo rápido; sin agarrarte a la barra." }
         ]},
         { nombre: "Circuito + cardio largo", foco: "Circuito de máquinas + elíptica", minutos: 58, calentamiento: CAL_SUP, ejercicios: [
-          { id: "dumbbell-romanian-deadlift", series: 3, reps: "10-12", descanso: 15, grupo: "Circuito · 1", alts: ["back-extension", "cable-pull-through", "seated-leg-curl"], nota: "Circuito: haz 1 serie de cada ejercicio seguido (15 s entre ellos) y descansa 90 s al terminar la vuelta. 3 vueltas." },
-          { id: "chest-supported-machine-row", series: 3, reps: "10-12", descanso: 15, grupo: "Circuito · 2", alts: ["seated-cable-row", "lat-pulldown", "chest-supported-db-row"] },
-          { id: "seated-db-press", series: 3, reps: "10-12", descanso: 15, grupo: "Circuito · 3", alts: ["machine-shoulder-press", "landmine-press", "smith-machine-shoulder-press"] },
-          { id: "hip-abduction", series: 3, reps: "15-20", descanso: 15, grupo: "Circuito · 4", alts: ["banded-seated-hip-abduction", "side-lying-hip-abduction", "cable-kickback"] },
-          { id: "cable-pallof-press", series: 3, reps: "10-12", descanso: 90, grupo: "Circuito · 5", alts: ["side-plank", "dead-bug", "plank"], nota: "Reps por lado. Al acabar, 90 s de descanso y otra vuelta." },
-          { id: "elliptical-trainer", tipo: "cardio", minutos: 22, zona: "5-6/10", alts: ["stationary-bike", "incline-treadmill-walk", "rowing-machine"],
+          { id: "dumbbell-romanian-deadlift", series: 3, reps: "10-12", descanso: 15, grupo: "Circuito · 1", alts: ["romanian-deadlift", "back-extension", "cable-pull-through", "seated-leg-curl", "dumbbell-hip-thrust", "single-leg-romanian-deadlift"], nota: "Circuito: haz 1 serie de cada ejercicio seguido (15 s entre ellos) y descansa 90 s al terminar la vuelta. 3 vueltas." },
+          { id: "chest-supported-machine-row", series: 3, reps: "10-12", descanso: 15, grupo: "Circuito · 2", alts: ["seated-cable-row", "t-bar-row", "one-arm-seated-cable-row", "chest-supported-db-row", "single-arm-db-row", "bent-over-db-row"] },
+          { id: "seated-db-press", series: 3, reps: "10-12", descanso: 15, grupo: "Circuito · 3", alts: ["machine-shoulder-press", "smith-machine-shoulder-press", "landmine-press", "arnold-press", "dumbbell-shoulder-press", "pike-push-ups"] },
+          { id: "hip-abduction", series: 3, reps: "15-20", descanso: 15, grupo: "Circuito · 4", alts: ["banded-seated-hip-abduction", "cable-kickback", "banded-lateral-walk", "db-step-up-to-balance", "side-lying-hip-abduction", "side-plank-leg-lift"] },
+          { id: "cable-pallof-press", series: 3, reps: "10-12", descanso: 90, grupo: "Circuito · 5", alts: ["side-plank", "dead-bug", "bird-dog", "single-arm-dumbbell-bench-press", "suitcase-carry", "dumbbell-side-bend"], nota: "Reps por lado. Al acabar, 90 s de descanso y otra vuelta." },
+          { id: "elliptical-trainer", tipo: "cardio", minutos: 22, zona: "5-6/10", alts: ["stationary-bike", "incline-treadmill-walk", "rowing-machine", "stair-climber", "db-step-up-to-balance", "walking"],
             consejo: "Continuo y moderado: frases completas. Si te sobra energía, sube la resistencia, no la velocidad." }
         ]}
       ]},
       "2": { dias: [
         { nombre: "Fuerza + intervalos", foco: "Cuerpo entero + cardio fuerte", minutos: 58, calentamiento: CAL_INF, ejercicios: [
-          { id: "leg-press", series: 3, reps: "10-15", descanso: 20, grupo: "Superserie 1 · A", alts: ["horizontal-leg-press", "hack-squat", "goblet-squat"] },
-          { id: "lat-pulldown", series: 3, reps: "10-12", descanso: 90, grupo: "Superserie 1 · B", alts: ["assisted-pull-ups", "one-arm-lat-pulldown", "v-bar-lat-pulldown"] },
-          { id: "chest-press-machine", series: 3, reps: "10-12", descanso: 20, grupo: "Superserie 2 · A", alts: ["db-bench-press", "smith-machine-bench-press", "incline-push-ups"] },
-          { id: "seated-leg-curl", series: 3, reps: "10-15", descanso: 75, grupo: "Superserie 2 · B", alts: ["leg-curl", "dumbbell-romanian-deadlift", "back-extension"] },
-          { id: "machine-shoulder-press", series: 2, reps: "10-12", descanso: 20, grupo: "Superserie 3 · A", alts: ["seated-db-press", "smith-machine-shoulder-press", "landmine-press"] },
-          { id: "cable-crunch", series: 2, reps: "12-15", descanso: 60, grupo: "Superserie 3 · B", alts: ["machine-seated-crunch", "dead-bug", "crunches"] },
-          { id: "stationary-bike", tipo: "cardio", minutos: 15, zona: "8/10", int: { trabajo: 60, descanso: 90, rondas: 6 }, alts: ["air-bike", "rowing-machine", "elliptical-trainer"],
+          { id: "leg-press", series: 3, reps: "10-15", descanso: 20, grupo: "Superserie 1 · A", alts: ["hack-squat", "horizontal-leg-press", "smith-machine-squat", "bulgarian-split-squat", "goblet-squat", "step-ups"] },
+          { id: "lat-pulldown", series: 3, reps: "10-12", descanso: 90, grupo: "Superserie 1 · B", alts: ["assisted-pull-ups", "one-arm-lat-pulldown", "v-bar-lat-pulldown", "db-pullover", "band-assisted-pull-ups", "negative-pull-ups"] },
+          { id: "chest-press-machine", series: 3, reps: "10-12", descanso: 20, grupo: "Superserie 2 · A", alts: ["db-bench-press", "smith-machine-bench-press", "bench-press", "cable-chest-press", "push-up", "incline-push-ups"] },
+          { id: "seated-leg-curl", series: 3, reps: "10-15", descanso: 75, grupo: "Superserie 2 · B", alts: ["leg-curl", "single-leg-lying-leg-curl", "ball-leg-curl", "dumbbell-hip-thrust", "dumbbell-romanian-deadlift", "back-extension"] },
+          { id: "machine-shoulder-press", series: 2, reps: "10-12", descanso: 20, grupo: "Superserie 3 · A", alts: ["seated-db-press", "smith-machine-shoulder-press", "landmine-press", "arnold-press", "dumbbell-shoulder-press", "pike-push-ups"] },
+          { id: "cable-crunch", series: 2, reps: "12-15", descanso: 60, grupo: "Superserie 3 · B", alts: ["machine-seated-crunch", "ab-wheel-rollout", "decline-crunch", "bench-leg-pull-in", "crunches", "dead-bug"] },
+          { id: "stationary-bike", tipo: "cardio", minutos: 15, zona: "8/10", int: { trabajo: 60, descanso: 90, rondas: 6 }, alts: ["elliptical-trainer", "rowing-machine", "air-bike", "incline-treadmill-walk", "db-step-up-to-balance", "walking"],
             consejo: "Intervalos: 1 min fuerte (solo frases cortas) + 1:30 suave. Semanas 1-3: haz 15 min continuos a ritmo moderado. Al empezar con intervalos, 4 × 30 s fuerte." }
         ]},
         { nombre: "Fuerza + cardio suave", foco: "Cuerpo entero + caminar en cuesta", minutos: 58, calentamiento: CAL_INF, ejercicios: [
-          { id: "plate-loaded-glute-drive", series: 3, reps: "10-15", descanso: 20, grupo: "Superserie 1 · A", alts: ["smith-machine-hip-thrust", "dumbbell-hip-thrust", "glute-bridge"] },
-          { id: "seated-cable-row", series: 3, reps: "10-12", descanso: 90, grupo: "Superserie 1 · B", alts: ["chest-supported-machine-row", "chest-supported-db-row", "single-arm-db-row"] },
-          { id: "goblet-squat", series: 3, reps: "10-12", descanso: 20, grupo: "Superserie 2 · A", alts: ["leg-press", "smith-machine-squat", "step-ups"], nota: "Si cuesta bajar, siéntate en un banco y levántate (sentadilla al banco)." },
-          { id: "incline-db-press", series: 3, reps: "10-12", descanso: 90, grupo: "Superserie 2 · B", alts: ["chest-press-machine", "smith-machine-incline-bench-press", "incline-push-ups"] },
-          { id: "seated-db-press", series: 2, reps: "10-12", descanso: 20, grupo: "Superserie 3 · A", alts: ["machine-shoulder-press", "landmine-press", "smith-machine-shoulder-press"] },
-          { id: "plank", tipo: "tiempo", series: 2, segundos: 30, descanso: 45, grupo: "Superserie 3 · B", alts: ["dead-bug", "side-plank", "cable-pallof-press"], nota: "Pulsa ▶ y aguanta: el temporizador cuenta los segundos y luego el descanso." },
-          { id: "incline-treadmill-walk", tipo: "cardio", minutos: 18, zona: "5-6/10", alts: ["elliptical-trainer", "stationary-bike", "stair-climber"],
+          { id: "plate-loaded-glute-drive", series: 3, reps: "10-15", descanso: 20, grupo: "Superserie 1 · A", alts: ["smith-machine-hip-thrust", "hip-thrust", "cable-pull-through", "dumbbell-hip-thrust", "single-leg-hip-thrust", "glute-bridge"] },
+          { id: "seated-cable-row", series: 3, reps: "10-12", descanso: 90, grupo: "Superserie 1 · B", alts: ["chest-supported-machine-row", "wide-grip-seated-cable-row", "t-bar-row", "chest-supported-db-row", "single-arm-db-row", "bent-over-db-row"] },
+          { id: "goblet-squat", series: 3, reps: "10-12", descanso: 20, grupo: "Superserie 2 · A", alts: ["leg-press", "hack-squat", "smith-machine-squat", "bulgarian-split-squat", "step-ups", "db-squat"], nota: "Si cuesta bajar, siéntate en un banco y levántate (sentadilla al banco)." },
+          { id: "incline-db-press", series: 3, reps: "10-12", descanso: 90, grupo: "Superserie 2 · B", alts: ["chest-press-machine", "smith-machine-incline-bench-press", "cable-chest-press", "db-bench-press", "incline-push-ups", "push-up"] },
+          { id: "seated-db-press", series: 2, reps: "10-12", descanso: 20, grupo: "Superserie 3 · A", alts: ["machine-shoulder-press", "smith-machine-shoulder-press", "landmine-press", "arnold-press", "dumbbell-shoulder-press", "pike-push-ups"] },
+          { id: "plank", tipo: "tiempo", series: 2, segundos: 30, descanso: 45, grupo: "Superserie 3 · B", alts: ["side-plank", "dead-bug-hold", "incline-plank-hold", "bench-hollow-hold", "suitcase-carry", "bear-plank-hold"], nota: "Pulsa ▶ y aguanta: el temporizador cuenta los segundos y luego el descanso." },
+          { id: "incline-treadmill-walk", tipo: "cardio", minutos: 18, zona: "5-6/10", alts: ["elliptical-trainer", "stationary-bike", "stair-climber", "rowing-machine", "db-step-up-to-balance", "walking"],
             consejo: "Ritmo moderado: puedes hablar con frases completas. Inclinación 4-8 % y velocidad de paseo rápido; sin agarrarte a la barra." }
         ]}
       ]}
