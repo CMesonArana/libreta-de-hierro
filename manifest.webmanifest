@@ -1,7 +1,7 @@
 {
   "name": "Libreta de Hierro",
   "short_name": "Libreta",
-  "description": "Rutinas de gimnasio con registro de pesos y temporizador",
+  "description": "Rutinas en casa con bandas y calistenia, registro y temporizador",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#14171b",

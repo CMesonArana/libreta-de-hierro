@@ -83,7 +83,7 @@ const num = v => { const n = parseFloat(String(v).replace(",", ".")); return isF
 const fmt = s => { s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); };
 const fmtKg = n => (Math.round(n * 100) / 100).toString().replace(".", ",");
 const fmtSet = s => s.min != null ? `${s.min} min${s.nivel != null ? " · nivel " + s.nivel : ""}`
-  : (s.kg != null ? fmtKg(s.kg) + " kg × " : "") + (s.reps ?? s.seg ?? "-") + (s.seg != null ? " s" : "");
+  : (s.kg != null ? "nivel " + fmtKg(s.kg) + " · " : "") + (s.reps ?? s.seg ?? "-") + (s.seg != null ? " s" : "");
 const hoy = () => new Date().toISOString().slice(0, 10);
 const fechaCorta = iso => new Date(iso + "T12:00").toLocaleDateString("es-ES", { day: "numeric", month: "short" });
 const letra = i => String.fromCharCode(65 + i);
@@ -100,6 +100,8 @@ let S = load();
 function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { toast("No se pudo guardar: el navegador bloquea el almacenamiento"); } }
 
 S.perfil = SOLO;
+// the plans moved home: drafts, swaps and running sessions point at exercises that no longer exist
+if (S.rutinas !== "casa") { S.rutinas = "casa"; S.draft = {}; S.swaps = {}; S.vivo = {}; S.intv = {}; save(); }
 const BRAND = "Libreta de " + PROGRAMAS[SOLO].titulo;
 
 /* ---------- current selection ---------- */
@@ -158,7 +160,7 @@ function objetivo(c, t) {
   if (tipo === "cardio") return [item.minutos + ":00", "min · " + (item.zona || "cardio")];
   if (tipo === "tiempo") return [fmt(item.segundos), "aguanta"];
   const kg = ((histOf(idOf(c, t.i)).at(-1) || {}).sets || [])[t.r];
-  return [String(item.reps), "reps" + (kg && kg.kg != null ? ` · última vez ${fmtKg(kg.kg)} kg` : "")];
+  return [String(item.reps), "reps" + (kg && kg.kg != null ? ` · última vez nivel ${fmtKg(kg.kg)}` : "")];
 }
 
 function iniciar(c, t) {
@@ -210,7 +212,7 @@ function marcar(c, i, s, ok) {
     document.querySelectorAll(`#i${i}s${s}a, #i${i}s${s}b`).forEach(inp => {
       if (inp.value.trim() === "" && num(inp.placeholder) != null) r[inp.dataset.f] = num(inp.placeholder);
     });
-    if (tipo !== "cardio" && r.kg == null && r.reps == null && r.seg == null) toast("Apunta kg y reps para que la app pueda decirte cuándo subir");
+    if (tipo !== "cardio" && r.kg == null && r.reps == null && r.seg == null) toast("Apunta las reps para que la app pueda decirte cuándo subir");
     buzz(40);
   }
   r.ok = ok;
@@ -453,7 +455,7 @@ function card(c, item, i, label) {
   } else {
     const isT = tipo === "tiempo";
     log = `<div class="sets">
-      <div class="sethead"><span>Serie</span><span>${isT ? "Kg extra" : "Kg"}</span><span>${isT ? "Segundos" : "Reps"}</span><span></span></div>
+      <div class="sethead"><span>Serie</span><span>Nivel</span><span>${isT ? "Segundos" : "Reps"}</span><span></span></div>
       ${Array.from({ length: nSets }, (_, s) => setRow(i, s, sets[s], prev && prev.sets[s], "kg", isT ? "seg" : "reps", isT ? item.segundos : 0, s === (mio ? ctSet : nowR))).join("")}
       <button class="addset" data-addset="${i}">+ Añadir serie</button>
     </div>`;
@@ -466,7 +468,7 @@ function card(c, item, i, label) {
     : `<div><b>${item.series}</b><span>series</span></div><div><b>${tipo === "tiempo" ? item.segundos + "s" : item.reps}</b><span>${tipo === "tiempo" ? "por serie" : "reps"}</span></div>${restCell}`;
 
   const opts = [item.id, ...(item.alts || [])].filter(a => EX[a]);
-  const tabs = opts.length < 2 ? "" : `<div class="opts"><span class="label">¿Máquina ocupada? Elige otra opción</span>
+  const tabs = opts.length < 2 ? "" : `<div class="opts"><span class="label">¿Prefieres otra opción?</span>
     <div class="tabs" role="tablist" aria-label="Opciones para el ejercicio ${label}">${opts.map((a, k) =>
       `<button role="tab" aria-selected="${a === id}" data-swap="${i}" data-to="${a}"><img src="${EX[a].img[0]}" alt=""><span><b>${EX[a].n}</b><small>${k ? EX[a].eq : "Principal"}</small></span></button>`).join("")}
     </div></div>`;
@@ -500,6 +502,7 @@ function card(c, item, i, label) {
         <div><h3>${ex.n}</h3><p class="mus">${ex.m}</p></div>
         <button class="icon-btn" data-hist="${id}" aria-label="Ver progreso de ${ex.n}">${I.chart}</button></div>
       <div class="presc">${presc}</div>
+      ${ex.aviso ? `<div class="hint note">${I.info}<span>${ex.aviso}</span></div>` : ""}
       ${hint(item, ex, tipo, prev)}
       ${item.nota ? `<div class="hint note">${I.info}<span>${item.nota}</span></div>` : ""}
       <details class="tips"><summary>Cómo se hace</summary>${howTo(ex)}</details>
@@ -510,13 +513,13 @@ function card(c, item, i, label) {
 
 function setRow(i, s, cur, prev, f1, f2, segs, now) {
   cur = cur || {};
-  const p1 = prev && prev[f1] != null ? fmtKg(prev[f1]) : (f1 === "kg" ? "kg" : "");
+  const p1 = prev && prev[f1] != null ? fmtKg(prev[f1]) : (f1 === "kg" ? "nivel" : "");
   const p2 = prev && prev[f2] != null ? prev[f2] : (segs || "");
   const chk = segs ? `${I.play}<span class="sr">Iniciar ${segs} segundos</span>` : I.check;
   const sn = f1 === "min" ? "" : s + 1;
   return `<div class="set ${cur.ok ? "ok" : ""} ${now ? "now" : ""}">
     ${ENVIVO && sn ? `<button class="sn" data-ir="${i},${s}" aria-label="Ir a la serie ${sn}">${sn}</button>` : `<span class="sn">${sn}</span>`}
-    <input id="i${i}s${s}a" data-i="${i}" data-s="${s}" data-f="${f1}" inputmode="decimal" value="${cur[f1] != null ? fmtKg(cur[f1]) : ""}" placeholder="${p1}" aria-label="${f1} serie ${s + 1}">
+    <input id="i${i}s${s}a" data-i="${i}" data-s="${s}" data-f="${f1}" inputmode="decimal" value="${cur[f1] != null ? fmtKg(cur[f1]) : ""}" placeholder="${p1}" aria-label="${f1 === "kg" ? "nivel" : f1} serie ${s + 1}">
     <input id="i${i}s${s}b" data-i="${i}" data-s="${s}" data-f="${f2}" inputmode="decimal" value="${cur[f2] != null ? cur[f2] : ""}" placeholder="${p2}" aria-label="${f2} serie ${s + 1}">
     <button class="chk" data-chk="${i}" data-s="${s}" aria-label="Marcar serie ${s + 1} hecha">${cur.ok ? I.check : chk}</button>
   </div>`;
@@ -524,16 +527,14 @@ function setRow(i, s, cur, prev, f1, f2, segs, now) {
 
 function hint(item, ex, tipo, prev) {
   if (tipo === "cardio") return item.consejo ? `<div class="hint">${I.target}<span>${item.consejo}</span></div>` : "";
-  if (!prev) return `<div class="hint">${I.target}<span>Primera vez: elige un peso con el que acabes cada serie dejando 1-3 repeticiones en reserva.</span></div>`;
+  if (!prev) return `<div class="hint">${I.target}<span>Primera vez: elige una banda o variante con la que acabes cada serie dejando 1-3 repeticiones en reserva.</span></div>`;
   const top = parseInt(String(item.reps).split("-").pop(), 10);
   const f = tipo === "tiempo" ? "seg" : "reps";
   const lim = tipo === "tiempo" ? item.segundos : top;
-  const kgs = prev.sets.map(s => s.kg).filter(v => v != null);
-  const maxKg = kgs.length ? Math.max(...kgs) : null;
   const todas = prev.sets.length >= item.series && prev.sets.every(s => s[f] != null && s[f] >= lim);
-  const resumen = prev.sets.map(s => (s.kg != null ? fmtKg(s.kg) + "×" : "") + (s[f] ?? "-")).join(" · ");
+  const resumen = prev.sets.map(s => (s.kg != null ? "n" + fmtKg(s.kg) + "×" : "") + (s[f] ?? "-")).join(" · ");
   if (todas) {
-    const paso = tipo === "tiempo" ? "añade 10-15 s o un poco de peso" : (ex.paso || 2.5) + " kg más" + (maxKg != null ? " (prueba " + fmtKg(maxKg + (ex.paso || 2.5)) + " kg)" : "");
+    const paso = tipo === "tiempo" ? "añade 10-15 s" : "usa una banda más dura, baja más lento o pasa a una variante más difícil";
     return `<div class="hint up">${I.up}<span><b>¡Sube!</b> La última vez (${resumen}) llegaste al tope en todas las series: ${paso}.</span></div>`;
   }
   return `<div class="hint">${I.target}<span>Última vez (${fechaCorta(prev.fecha)}): <b>${resumen}</b>. Objetivo: 1 repetición más en alguna serie.</span></div>`;
@@ -552,26 +553,25 @@ function setDraft(i, s, f, v) {
 function finish() {
   const c = cur(), L = vivo();
   const d = S.draft[c.dk] || {};
-  let n = 0, vol = 0, prs = [];
+  let n = 0, prs = [];
   const f = hoy(), ej = [];
   c.dia.ejercicios.forEach((item, i) => {
     const sets = ((d[i] || {}).sets || []).filter(s => s && Object.keys(s).some(k => k !== "ok" && s[k] != null));
     if (!sets.length) return;
     const id = idOf(c, i);
     const h = ((S.hist[S.perfil] ||= {})[id] ||= []);
-    const oldMax = Math.max(0, ...h.flatMap(x => x.sets.map(s => s.kg || 0)));
-    const newMax = Math.max(0, ...sets.map(s => s.kg || 0));
+    const oldMax = Math.max(0, ...h.flatMap(x => x.sets.map(s => s.reps || s.seg || 0)));
+    const newMax = Math.max(0, ...sets.map(s => s.reps || s.seg || 0));
     if (h.length && newMax > oldMax) prs.push(EX[id].n);
     const clean = sets.map(({ ok, ...rest }) => rest);
     if (h.length && h.at(-1).fecha === f) h[h.length - 1] = { fecha: f, sets: clean }; else h.push({ fecha: f, sets: clean });
     n += sets.length;
-    vol += clean.reduce((a, s) => a + (s.kg || 0) * (s.reps || 0), 0);
     ej.push({ n: EX[id].n, s: clean.map(fmtSet).join(" · ") });
   });
   if (!n) { toast("Apunta al menos una serie antes de guardar"); return; }
   const aqui = L && L.dk === c.dk;
   (S.registro[S.perfil] ||= []).push({ fecha: f, sesion: letra(c.di), nombre: c.dia.nombre, pk: c.pk,
-    min: aqui ? Math.max(1, Math.round(transcurrido(L) / 60000)) : null, series: n, vol: Math.round(vol), ej });
+    min: aqui ? Math.max(1, Math.round(transcurrido(L) / 60000)) : null, series: n, ej });
   if (aqui) delete S.vivo[S.perfil];
   delete S.draft[c.dk];
   (S.ultimas ||= {})[c.dk] = f;
@@ -737,14 +737,14 @@ function openHist(id) {
   $("#hTitle").textContent = ex.n;
   if (!h.length) { $("#hBody").innerHTML = `<p class="empty">Aún no hay sesiones guardadas de este ejercicio. Apunta tus series y pulsa «Terminar y guardar sesión».</p>`; $("#dlgHist").showModal(); return; }
   const isCardio = ex.tipo === "cardio";
-  const val = x => isCardio ? Math.max(0, ...x.sets.map(s => s.min || 0)) : Math.max(0, ...x.sets.map(s => s.kg || 0)) || Math.max(0, ...x.sets.map(s => s.reps || s.seg || 0));
+  const val = x => isCardio ? Math.max(0, ...x.sets.map(s => s.min || 0)) : Math.max(0, ...x.sets.map(s => s.reps || s.seg || 0));
   const pts = h.slice(-12).map(val), max = Math.max(...pts, 1), min = Math.min(...pts);
   const W = 320, H = 110, pad = 14;
   const lo = min === max ? 0 : min * .9;
   const xy = pts.map((v, k) => [pad + (pts.length === 1 ? (W - 2 * pad) / 2 : k * (W - 2 * pad) / (pts.length - 1)), H - pad - (v - lo) / (max - lo || 1) * (H - 2 * pad)]);
   const line = xy.map(p => p.join(",")).join(" ");
   const area = `${xy[0][0]},${H - pad} ${line} ${xy.at(-1)[0]},${H - pad}`;
-  const unit = isCardio ? "min" : (Math.max(...h.flatMap(x => x.sets.map(s => s.kg || 0))) ? "kg" : "reps");
+  const unit = isCardio ? "min" : "reps";
   $("#hBody").innerHTML = `
     <p class="label" style="margin:0">Mejor marca por sesión (${unit})</p>
     <svg class="chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Evolución">

@@ -1,67 +1,81 @@
-🎯 sota · cuatro rutinas de gimnasio de ~60 min (estética 75 kg y pérdida de grasa 105 kg, 2 y 3 días) + fuente libre de imágenes y vídeos · 2026-10-24
+🎯 sota · rutinas en casa con bandas y calistenia (estética 75 kg y pérdida de grasa 105 kg, 2 y 3 días) · 2026-10-31
 
-Modo KIT. Velocidad estable para la ciencia del entrenamiento y rápida para las fuentes de imágenes. Solidez de la evidencia: **fuerte** (varios metaanálisis o una posición oficial), **moderada** (un metaanálisis o varios ensayos), **débil** (ensayos pequeños, EMG o criterio de entrenadores). No es consejo médico.
+Modo KIT. Velocidad estable. Sustituye al informe de gimnasio del 2026-10-24, que queda en el historial de git; la estructura de entonces (cuerpo entero, superseries, descansos) se mantiene. Solidez: **fuerte** (varios metaanálisis), **moderada** (un metaanálisis o varios ensayos), **débil** (ensayos pequeños, EMG o criterio). No es consejo médico.
 
 ## Por dónde empezar
 
-1. **Sesiones de cuerpo entero**, A/B con 2 días y A/B/C con 3. Con el volumen igualado, la frecuencia no cambia el crecimiento ([Pelland 2025](https://pubmed.ncbi.nlm.nih.gov/41343037/); [ACSM 2026](https://pubmed.ncbi.nlm.nih.gov/41843416/)). Con 2 días, una división torso/pierna metería demasiadas series de un músculo en una sola sesión ([Remmert, preprint](https://sportrxiv.org/index.php/server/preprint/view/537)).
-2. **Superseries de antagonistas o músculos que no compiten** (press + remo, elevación lateral + aperturas), para que caben 22-25 series en una hora. Dan el mismo volumen e hipertrofia con sesiones un 36 % más cortas ([Zhang/Weakley 2025](https://doi.org/10.1007/s40279-025-02176-8); [Burke 2025](https://rgu-repository.worktribe.com/output/2934908/less-time-same-gains-comparison-of-superset-vs-traditional-set-training-on-muscular-adaptations)). **Moderada.**
-3. **Descansos:** 90-120 s en los básicos y 45-75 s en el aislamiento. Pasar de 60 s da algo más de crecimiento, y pasar de 90 s no aporta nada medible ([Singer 2024](https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2024.1429789/text)). **Moderada.**
-4. **Esfuerzo a 1-2 repeticiones en reserva y progresión doble**, como en la ejecución del 2026-10-22. La app avisa de cuándo subir el peso.
-5. **Imágenes:** [RepDB free](https://github.com/RepDB/exercise-dataset) con nombres y pasos en castellano, servidas desde la propia web y con atribución ([licencia](https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md)). **Vídeos:** un vídeo de YouTube por ejercicio, incrustado con `youtube-nocookie`.
+1. **Lo que cambia es el esfuerzo, no la estructura.** Sin pesas, cada serie tiene que acabar a 0-3 repeticiones del fallo. Hay crecimiento con cargas muy distintas si las series llegan cerca del fallo ([Schoenfeld 2017](https://pubmed.ncbi.nlm.nih.gov/28834797/); [Currier 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10579494/)), y acercarse al fallo ayuda ([Robinson 2024](https://pubmed.ncbi.nlm.nih.gov/38970765/)), aunque llegar al fallo total apenas añade ([Refalo 2023](https://pubmed.ncbi.nlm.nih.gov/36334240/)).
+2. **Progresar por este orden:** banda más dura o dos juntas, más lento con pausa, variante más difícil.
+3. **Sin atar bandas a puertas ni muebles,** con gafas si se puede y revisándolas en cada uso ([TheraBand](https://cdn.shopify.com/s/files/1/0330/0717/3769/files/theraband-instruction-sheet.pdf)).
 
-## El proceso
+## El material del ticket
 
-Elección de ejercicios por músculo → estructura de la sesión (superseries, descansos, orden) → reparto pesas/cardio para perder grasa → imágenes y vídeos → registro, temporizador y alternativas en la web.
+| Artículo | Qué es | Confirmado |
+|---|---|---|
+| Power Band 30 kg (ref. 0410672) | Banda larga cerrada, 30 kg según la tienda ([Sprinter](https://www.sprintersports.com/doone-power-0410672)) | Sí, por la referencia del ticket; 208 cm solo consta en el ticket |
+| Tubo nivel medio (ref. 0403478) | Tubo de 120 cm con asas ([Sprinter](https://www.sprintersports.com/tubo-doone-nivel-medio-0403478)) | Sí, por la referencia del ticket |
+| Doone bandas 3 (ref. 0419232) | 3 minibandas de 38 × 5,5 cm con bolsa ([Sprinter](https://www.sprintersports.com/gomas-resistencia-doone-0419232)) | Sí, por la referencia y el precio |
+| Sveltus 4 bandas (ref. 0302836) | 4 minibandas de 25 × 5 cm y distinta intensidad ([Sprinter](https://www.sprintersports.com/gomas-resistencia-sveltus-0302836)) | Por el nombre y el precio; el título de la web pone 425 cm, pero la ficha pone 25 cm |
 
-## Ejercicios: equivalentes salvo que un ensayo diga lo contrario
+Por tanto, lo único largo es el tubo y la power band. El salto entre los dos es grande, y por eso importan el agarre corto y la variante.
 
-| | Elección | Por qué | Madurez |
-|---|---|---|---|
-| Pecho superior | Press inclinado en Smith a 30-45° | Solo el pecho superior creció más con la inclinación ([Chaves 2020](https://pmc.ncbi.nlm.nih.gov/articles/PMC7449336/), 10 por grupo, sin entrenamiento previo) | débil |
-| Pecho | Press en máquina + pec deck o poleas | Las aperturas crecen igual que el press ([Enes, post del autor](https://x.com/BradSchoenfeld/status/2098012858738995530), sin publicar) y máquinas y pesos libres dan una hipertrofia parecida ([Haugen 2023](https://doi.org/10.1186/s13102-023-00713-4)) | moderada |
-| Hombro lateral | Elevación en polea, con mancuernas o en máquina | La polea y la mancuerna crecen igual ([Larsen/Wolf/Schoenfeld 2025](https://pmc.ncbi.nlm.nih.gov/articles/PMC12277279/)) | moderada |
-| Glúteo | Hip thrust en máquina + prensa honda + peso muerto rumano + abductores | El hip thrust y la sentadilla hacen crecer el glúteo por igual, y la sentadilla añade cuádriceps ([Plotkin 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10593473/), con barra; pasarlo a la máquina es una extrapolación). La sentadilla profunda da más glúteo que la media ([Kubo, resumen](https://www.strongerbyscience.com/squat-depth/)) | moderada |
-| Isquios | Curl femoral sentado | Gana al tumbado ([Maeo 2021, resumen](https://www.strongerbyscience.com/?p=62454)) | moderada |
-| Abdomen | Crunch en polea o máquina + elevación de piernas + Pallof | El crunch carga más la parte alta y la elevación de piernas la baja (solo agudo: [Gomirato 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10824285/)) | débil |
-| Rango | Bajar hasta el estiramiento | Entrenar en músculo largo probablemente da más crecimiento ([Wolf, revisión](https://pmc.ncbi.nlm.nih.gov/articles/PMC12869050)), aunque hay un trabajo en contra ([Sports Med Int Open](https://thieme-connect.com/products/ejournals/abstract/10.1055/a-2733-7605)) | discutido |
+Ninguna página da kilos por banda, y el color de un tubo no equivale a un peso fijo de mancuerna ([Martín-Ruiz 2025](https://pubmed.ncbi.nlm.nih.gov/40734261/)). Por eso la app guarda el nivel y las repeticiones, no los kilos.
 
-Las alternativas (hasta 3 por ejercicio) siguen el orden máquina → polea → mancuerna o peso corporal, con el mismo músculo principal.
-
-## Pérdida de grasa (105 kg): pesas para conservar músculo, cardio para gastar
+## Bandas frente a pesas: plausible, con evidencia indirecta
 
 | | Elección | Por qué | Madurez |
 |---|---|---|---|
-| Dosis | Unos 150 min/semana de actividad moderada, a la que se llega poco a poco; la dieta es la palanca principal | [ACSM 2024, Jakicic](https://eprints.whiterose.ac.uk/id/eprint/217257) | fuerte |
-| Pesas | Cuerpo entero en máquinas, 2-3 series de 10-15 | Combinar pesas y cardio no quema más grasa que el cardio solo, pero las pesas conservan el músculo ([Willis 2012](https://pubmed.ncbi.nlm.nih.gov/23019316/); [Lafontant 2025](https://pmc.ncbi.nlm.nih.gov/articles/PMC12107660/); [Binmahfoz 2025](https://doi.org/10.1136/bmjsem-2024-002363)) | fuerte |
-| Cardio | Un día de intervalos (6 × 1 min fuerte / 1:30 suave) y el resto continuo | Los intervalos de poco volumen igualan al continuo en grasa total y le ganan en grasa visceral ([Zhu 2025](https://doi.org/10.1080/02640414.2025.2559518), certeza baja). Sin diferencias en grasa total ([Cheng 2026](https://pmc.ncbi.nlm.nih.gov/articles/PMC12911145)) | moderada |
-| Máquinas | Bici → cinta inclinada → elíptica → remo | Criterio biomecánico, no hay ensayos que comparen máquinas en obesidad | débil |
-| Progresión en déficit | Despacio (+1 repetición o el salto de peso mínimo), sin añadir series ni especializar | [RP, vídeo](https://www.youtube.com/watch?v=vxdQbLZfkJc) | criterio de entrenador |
-| Seguridad | Sin síntomas ni enfermedad conocida se puede empezar a intensidad moderada sin chequeo previo; los intervalos fuertes, después de un chequeo | [algoritmo ACSM, resumen](https://open-exam-prep.com/study-guides/acsm-cpt/chapter-2-health-screening/preparticipation-screening-algorithm) | moderada |
+| Fuerza | Bandas igual que pesas | Sin diferencias en tren superior ni inferior, con 7-8 ensayos y poblaciones muy mezcladas, y sin datos de hipertrofia ([Lopes 2019](https://journals.sagepub.com/doi/10.1177/2050312119831116)) | moderada |
+| Músculo | Series cerca del fallo | Es una extrapolación: no hay ningún metaanálisis de hipertrofia con bandas. La igualdad de fuerza con poca carga también es dudosa ([Hammert 2025](https://pubmed.ncbi.nlm.nih.gov/41381816/)) | débil |
+| Con experiencia | Solo un ensayo | Un aparato elástico igualó al press de banca en hombres entrenados, pero se usa con barra, no solo con bandas ([Gavanda 2026](https://www.termedia.pl/Training-with-an-elastic-bench-press-device-provides-comparable-r-nadaptations-to-conventional-resistance-training-in-trained-men,78,57297,1,1.html)) | débil |
 
-"Primero pesas, luego cardio", "intervalos desde la semana 4" y "no correr las primeras 12 semanas" son decisiones prudentes de entrenador, no resultados de ensayos.
+Hay voces en contra: un canal de entrenadores dice que algunos perdieron fuerza usando solo bandas, y que sirven más para hombros que para press, remo o pierna pesada ([Hybrid Resistance](https://www.youtube.com/watch?v=Qhmxw-FdG0Q)). Con el tiempo, a Carlos le faltará carga en pierna y espalda. Si se estanca, lo primero que conviene comprar es una barra de dominadas o unas mancuernas.
 
-## Imágenes y vídeos
+## Ejercicios por músculo
 
-| | Elección | Por qué | Encaje |
+| Músculo | Elección | Por qué | Madurez |
 |---|---|---|---|
-| Mejor ahora | [RepDB free](https://github.com/RepDB/exercise-dataset) | 650 ejercicios con nombres e instrucciones en castellano, todas las máquinas pedidas, dos fotogramas WebP de 512 px | Se puede usar dentro de una app o web con atribución; no se puede redistribuir como dataset. La web solo sirve las 155 imágenes que muestra |
-| Alternativa | [free-exercise-db](https://github.com/yuhonas/free-exercise-db) | 876 ejercicios con fotos | La licencia Unlicense cubre el JSON, pero las imágenes parecen copiadas de otra web: solo para uso privado |
-| Descartadas | [wger](https://wger.de/api/v2/exerciseinfo/?language=4) (CC-BY-SA, vídeos MOV de hasta 60 MB) y [MuscleWiki](https://api.musclewiki.com/api-terms) (no permite incrustar y necesita servidor) | | |
-| Vídeo | Un id de YouTube por ejercicio (87, comprobados con oEmbed) más un enlace de búsqueda | La incrustación por búsqueda dejó de funcionar en 2020 ([YouTube](https://developers.google.com/youtube/player_parameters)) | Los vídeos pueden desaparecer: basta con borrar su línea en `videos.js` |
+| Pecho | Flexiones: inclinadas → rodillas → suelo → pies en alto → con banda | Flexión y press de banca con poca carga dieron un crecimiento parecido, con 9 hombres sin experiencia por grupo ([Kikuchi 2017](https://pubmed.ncbi.nlm.nih.gov/29541130/)). La flexión con banda igualó a un press de 6RM en fuerza y actividad muscular global ([Calatayud 2015](https://pubmed.ncbi.nlm.nih.gov/24983847/)). El orden de dificultad sale de las fuerzas medidas ([Ebben 2011](https://pubmed.ncbi.nlm.nih.gov/21873902/)) | moderada |
+| Glúteo | Hip thrust a una pierna, búlgara, abducción con minibanda | No hay un ejercicio mejor que el resto ([Krause Neto 2025](https://pmc.ncbi.nlm.nih.gov/articles/PMC12018462)). Sentadillas sin peso con progresión a una pierna igualaron a la barra, con muy pocas personas ([Wei 2023](https://www.nature.com/articles/s41598-023-40319-x)) | moderada |
+| Isquios | Curl deslizante y peso muerto rumano con banda | El nórdico tiene la mejor evidencia ([Maeo 2024](https://pubmed.ncbi.nlm.nih.gov/38857522/); [Morin 2025](https://pubmed.ncbi.nlm.nih.gov/40644669/)), pero necesita sujetar los talones bajo algo muy pesado; un sofá se puede mover. Queda como alternativa. El curl deslizante no tiene ensayos de hipertrofia: se elige por criterio | débil |
+| Abdomen, hombro lateral | Crunch, crunch inverso; elevación lateral con tubo | Se mantiene lo del informe anterior, sin ensayos propios de bandas | débil |
 
-## Patrones de las apps de registro
-El temporizador arranca solo al marcar una serie y tiene ±15 s ([Hevy](https://www.hevyapp.com/features/workout-settings/); [Strong](https://help.strongapp.io/article/231-rest-timer); [Boostcamp](https://www.boostcamp.app/features/rest-timer)). Al cambiar un ejercicio se mantienen las series y repeticiones, se marca cuál era el «original» y se puede volver a él ([Boostcamp](https://www.boostcamp.app/features/swap-exercises)). La web hace lo mismo.
+## Espalda: remo sin anclaje y tirón vertical sin evidencia
+
+| | Elección | Por qué | Madurez |
+|---|---|---|---|
+| Remo | Sentado con la banda en los pies, o inclinado pisándola | No necesita puerta ni muebles. No hay EMG de esta colocación | débil |
+| Espalda media | Separación de banda | Tiene actividad muscular medida en el trapecio medio ([Fukunaga 2022](https://ijspt.scholasticahq.com/article/33026-band-pull-apart-exercise-effects-of-movement-direction-and-hand-position-on-shoulder-muscle-activity)); no se midió el dorsal | moderada |
+| Dorsal vertical | Separación de banda por encima de la cabeza | Es la única opción sin anclar, y no tiene estudios. Es el punto más flojo del plan | débil |
+| Descartado | Remo bajo la mesa, con toalla en la puerta, nudo en la puerta | Ninguna fuente fiable lo respalda, y TheraBand prohíbe colgar el peso del cuerpo de una banda | |
+
+**Seguridad.** En una serie de lesiones de ojo, los 13 ojos se lesionaron con una banda que se escapó del punto de apoyo, y entre esos puntos se citan los pies ([serie clínica](https://pmc.ncbi.nlm.nih.gov/articles/PMC9612684/); [otra serie](https://pmc.ncbi.nlm.nih.gov/articles/PMC7716731/)). Por eso, pisar la banda tampoco está libre de riesgo: revísala, pisa con firmeza y usa gafas si puedes.
+
+## Pérdida de grasa con 105 kg
+
+| | Elección | Por qué | Madurez |
+|---|---|---|---|
+| Conservar músculo | Fuerza 2-3 días, unas 10 series por músculo y semana si se puede | El ejercicio bajó la masa magra perdida al 7,7 % de la pérdida de peso, frente al 22,3 % solo con dieta ([Busk-Cirera 2026](https://doi.org/10.1111/dom.71006)). La cifra de 10 series sale de deportistas ([Roth 2022](https://doi.org/10.1007/s00421-022-04896-5)). El plan de Kevin se queda en menos series por sesión para empezar, por criterio | moderada |
+| Intervalos | Boxeo sin saltos | Un programa de intervalos con el peso del cuerpo, a distancia, bajó grasa en 22 hombres con obesidad ([Hwang 2025](https://doi.org/10.3389/fphys.2025.1711436)). El boxeo sin saltos es una adaptación propia | débil |
+| Continuo | Caminar rápido; en casa, marcha | Criterio práctico. No se encontraron ensayos de marcha en casa con obesidad | débil |
+| Escaleras | Alternativa | Mejoran la forma física, pero no cambiaron la grasa en las pausas cortas de ejercicio ([Wan 2025](https://doi.org/10.1111/sms.70114)). Bajar carga la rodilla más que subir o caminar: 346, 316 y 261 % del peso corporal ([Kutzner 2010](https://doi.org/10.1016/j.jbiomech.2010.03.046)) | moderada |
+
+El estudio más grande de intervalos cortos encontrado era corriendo en cinta, así que no se aplica aquí. La dosis de 150 min y la dieta como palanca principal siguen del informe anterior ([ACSM 2024](https://eprints.whiterose.ac.uk/id/eprint/217257)).
 
 ## Lo que se queda abierto
-- Faltan ensayos de hipertrofia para la máquina de abductores, los oblicuos, el crunch en máquina, el hombro frontal y la comparación pec deck frente a banca.
-- No hay ningún ensayo nuevo de inclinado frente a plano posterior a Chaves 2020, ni ningún ensayo controlado de descansos de 2025-2026 confirmado en la fuente.
-- La próxima vez: repetir el seguimiento de citas en Europe PMC con `epmc CITES:` sobre Plotkin 2023 y Larsen 2025 cuando el servicio vuelva a responder.
+
+- No hay ningún ensayo de hipertrofia solo con bandas en adultos jóvenes, ni datos de una persona de 105 kg.
+- No hay EMG del remo con la banda en los pies, de tirones verticales sin anclaje, de la flexión en pica ni de la elevación lateral con banda para hipertrofia.
+- No hay fuentes para el curl deslizante ni para el boxeo sin saltos en obesidad.
+- Las imágenes de los ejercicios con banda sin ilustración propia son del mismo movimiento con polea o mancuerna, y la ficha lo avisa.
 
 ## Cobertura
-- **Ola 1:** 4 investigadores (ejercicios, pérdida de grasa, sesión e imágenes), un explorador de programas de entrenadores y 1 consulta a Gemini.
-- **Comprobación:** un verificador nuevo, que mantuvo las 10 elecciones; matizó 5 y cambió 1 cita.
-- **Registro de fuentes:** 135 entradas, todos los enlaces comprobados. Se corrigió un id de PubMed equivocado, se eliminó un PDF que ya no existe, y 4 vídeos de RP que salían como «no coinciden» eran correctos.
-- **Canales que fallaron:** Europe PMC (503 toda la sesión) y PubMed (bloquea los scripts), así que muchas filas de artículos vienen de resúmenes y son T2.
-- **Sin ola 2 de seguimiento de citas:** las lagunas que quedan las buscaron 3 agentes con vocabularios distintos sin encontrar nada, y el canal de citas estaba caído.
-- **Tiempo:** unos 25 minutos.
+
+- **Ola 1:** 5 investigadores (bandas, ejercicios, tirón, pérdida de grasa, programas) y 1 consulta a Gemini. **Ola 2:** 1 investigador de lagunas con seguimiento de citas sobre Lopes 2019 y Kikuchi 2017, sin ensayos nuevos.
+- **Comprobación:** un verificador nuevo cambió 1 elección (el estudio de intervalos), rebajó el nórdico y corrigió la explicación del riesgo de las bandas.
+- **Registro:** 100 fuentes, con todos los enlaces comprobados por script. Se descartaron 2 enlaces muertos y 3 páginas no respondieron.
+- **Canales:** Europe PMC respondió bien por identificador y con ruido en texto libre. La búsqueda de Reddit agotó el tiempo. No se encontró ningún programa solo con bandas de entrenadores de primera línea.
+- **Material:** las referencias del ticket se comprobaron a mano en las páginas de Sprinter, y corrigieron un supuesto de los investigadores (no hay bandas planas).
+- **Vídeos:** 52 ids comprobados con oEmbed. Se eligieron por título y canal, sin verlos enteros.
+- **Explorador de herramientas:** omitido, porque aquí no hay decisiones de software.
+- **Tiempo:** unos 45 minutos.

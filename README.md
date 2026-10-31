@@ -1,6 +1,6 @@
 # Libreta de Hierro
 
-Web de rutinas de gimnasio para el móvil: cuatro planes de unos 60 minutos, imagen y vídeo de cada ejercicio, 6 alternativas por ejercicio si la máquina está ocupada (siempre una con mancuernas y banco y otra sin máquina), temporizador configurable y registro de pesos que recuerda la sesión anterior.
+Web de rutinas para hacer en casa, en el móvil: cuatro planes de unos 60 minutos solo con esterilla, minibandas, banda larga, tubo con asas y peso corporal, imagen y vídeo de cada ejercicio, 2 alternativas por ejercicio, temporizador configurable y registro que recuerda la sesión anterior.
 
 | Enlace | Persona | Planes |
 |---|---|---|
@@ -30,8 +30,9 @@ Para probarla en el ordenador hace falta un servidor local (`python -m http.serv
 - Sonidos suaves: tic-tic en los 3 últimos segundos, un tono que sube al empezar una serie, uno que baja al empezar un descanso y otro al acabar la sesión. En ⚙ se prueban, se apagan y se cambian los segundos por repetición y la preparación.
 - **Temporizador de este ejercicio** (o de esta superserie/circuito): cada paso tiene su propio reloj, aparte del de la sesión. Sigue el mismo orden y los mismos descansos que la sesión (en una superserie: 1A → «Cambia a 1B» → 1B → descanso → 1A…). Los botones de debajo (A1, B1, 1:30…) son cada serie y cada descanso: tócalos para empezar o saltar ahí. Marca cada serie hecha y tiene ⏸, −15/+15 y ■. Al arrancarlo, la sesión se pone en pausa; al reanudar la sesión, se para.
 - ⏸ pausa la sesión (y el reloj). ■ la para: guardar y terminar, o parar sin guardar (lo apuntado se queda como borrador). Si recargas la página, la sesión sigue donde estaba.
-- La próxima vez verás lo que hiciste y, si llegaste al tope del rango, un aviso de **¡Sube!**. El botón del calendario arriba abre el **registro de sesiones** (fecha, duración, series, kg levantados y el detalle de cada ejercicio).
-- **¿Máquina ocupada?** Arriba de cada ejercicio hay pestañas con el principal y 6 alternativas: al menos una con mancuernas y banco y otra de calistenia o solo mancuernas (debajo de cada nombre pone qué material necesita). Toca una y cambia el ejercicio con su imagen y vídeo; se recuerda para esa sesión.
+- La próxima vez verás lo que hiciste y, si llegaste al tope del rango, un aviso de **¡Sube!** (banda más dura, bajar más lento o variante más difícil). El botón del calendario arriba abre el **registro de sesiones** (fecha, duración, series y el detalle de cada ejercicio).
+- **¿Prefieres otra opción?** Arriba de cada ejercicio hay pestañas con el principal y 2 alternativas (debajo de cada nombre pone qué material necesita). Toca una y cambia el ejercicio con su imagen y vídeo; se recuerda para esa sesión.
+- **Material:** banda larga (power band de 30 kg), tubo con asas, minibandas (Doone 3 niveles, 38 × 5,5 cm, y Sveltus 4 bandas, 25 × 5 cm) y esterilla; una mesa, silla o sofá firmes hacen de apoyo. Ninguna rutina ata bandas a puertas ni muebles. La columna **Nivel** guarda qué banda o variante usas.
 - El cardio tiene intervalos configurables (trabajo, suave, rondas). La rueda ⚙ configura sonido, vibración y la copia de seguridad.
 - El progreso se guarda **en el navegador de cada móvil**. En ⚙ puedes descargar una copia y cargarla en otro dispositivo.
 
@@ -40,11 +41,11 @@ Para probarla en el ordenador hace falta un servidor local (`python -m http.serv
 - `carlos/`, `kevin/`: la página de cada persona (solo dicen qué rutina cargar). Al cambiar cualquier archivo, sube el número `?v=` de sus enlaces para que los móviles carguen la versión nueva al momento.
 - `app.js`, `app.css`: la aplicación.
 - `rutinas.js`: los cuatro planes (series, reps, descansos, alternativas, notas). Es lo que hay que tocar para cambiar una rutina.
-- `ejercicios.js` + `img/`: nombres, pasos e ilustraciones de cada ejercicio.
+- `ejercicios.js` + `img/`: nombres, pasos e ilustraciones de cada ejercicio. Los ejercicios con bandas sin imagen propia reutilizan la del mismo movimiento y lo avisan en su ficha.
 - `videos.js`: un vídeo de técnica de YouTube por ejercicio. Si alguno desaparece, borra su línea y la app mostrará un enlace de búsqueda.
 
 ## Créditos y avisos
 
-- Exercise data by [RepDB (repdb.co)](https://repdb.co): nombres, instrucciones e ilustraciones, con su licencia gratuita (uso dentro de la app con atribución; no redistribuir como dataset).
+- Exercise data by [RepDB (repdb.co)](https://repdb.co): nombres, instrucciones e ilustraciones, con su licencia gratuita (uso dentro de la app con atribución; no redistribuir como dataset). Los pasos de los ejercicios con bandas están escritos para esta web.
 - Vídeos: de sus autores en YouTube, incrustados con `youtube-nocookie.com`.
-- Las rutinas se basan en una revisión de la evidencia (octubre de 2026); el resumen está en `INFORME.md`. No es consejo médico: si hay dolor en el pecho, mareos o alguna enfermedad, consulta antes con un médico.
+- Las rutinas se basan en una revisión de la evidencia (octubre de 2026, rehecha para casa el día 31); el resumen está en `INFORME.md`. No es consejo médico: si hay dolor en el pecho, mareos o alguna enfermedad, consulta antes con un médico.
