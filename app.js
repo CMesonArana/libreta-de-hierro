@@ -376,11 +376,11 @@ function render() {
     <div class="meta">
       <span class="pill acc">${I.target}${c.dia.foco}</span>
       <span class="pill">${I.clock}~${c.dia.minutos} min</span>
-      <span class="pill">${I.list}${nEj} ejercicios · ${nSeries} series</span>
+      ${nSeries ? `<span class="pill">${I.list}${nEj} ejercicios · ${nSeries} series</span>` : ""}
     </div>
     ${L ? "" : `<button class="btn block go" data-empezar="-1">${I.play} Empezar sesión</button>`}
     <details class="guide"><summary>Cómo funciona este plan</summary><div class="gbody"><ul>${c.P.reglas.map(r => `<li>${r}</li>`).join("")}</ul></div></details>
-    ${c.dia.calentamiento ? `<div class="warm"><div><b>Calentamiento · 5 min</b>${c.dia.calentamiento}</div></div>` : ""}`;
+    ${c.dia.calentamiento ? `<div class="warm"><div><b>Calentamiento</b>${c.dia.calentamiento}</div></div>` : ""}`;
 
   $("#lista").innerHTML = pasos(c).map((p, k) => {
     const n = p.items.length, first = c.dia.ejercicios[p.items[0]];

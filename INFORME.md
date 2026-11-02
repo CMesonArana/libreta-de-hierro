@@ -8,6 +8,16 @@ Modo KIT. Velocidad estable. Sustituye al informe de gimnasio del 2026-10-24, qu
 2. **Progresar por este orden:** banda más dura o dos juntas, más lento con pausa, variante más difícil.
 3. **Sin atar bandas a puertas ni muebles,** con gafas si se puede y revisándolas en cada uso ([TheraBand](https://cdn.shopify.com/s/files/1/0330/0717/3769/files/theraband-instruction-sheet.pdf)).
 
+## Actualización 2026-11-02: 20 minutos, 4-6 días, calistenia primero
+
+| | Elección | Por qué | Madurez |
+|---|---|---|---|
+| Duración | 20 min: 2 de calentamiento y 2 superseries de 3 vueltas (12 series) | Las superseries y las series descendentes reducen el tiempo de sesión a la mitad aproximadamente. Basta con 4 series por músculo y semana para progresar, con al menos una sentadilla, un tirón y un empuje ([Iversen 2021](https://pubmed.ncbi.nlm.nih.gov/34125411/)) | fuerte |
+| Más días, menos tiempo | 4-6 sesiones que rotan | Lo que cuenta es el volumen semanal: más series dan más crecimiento, con rendimiento decreciente, y la frecuencia apenas añade a igualdad de series ([Pelland 2025](https://pubmed.ncbi.nlm.nih.gov/41343037/); [Iversen 2021](https://pubmed.ncbi.nlm.nih.gov/34125411/)). Por eso repartir las series en más días cortos no pierde nada | fuerte |
+| Carlos | 4 sesiones A-D en rotación | Con 4 días: unas 48 series por semana; con 5: unas 60; con 6: unas 72. El plan anterior de 3 × 60 min sumaba unas 69. Pecho y glúteo: 9-12 series por semana con 4 días; abdomen, 12 | moderada |
+| Kevin | Fuerza A → cardio suave → Fuerza B → intervalos | Con 6 días: 3 de fuerza (unas 9 series por músculo) y 3 de cardio. Para conservar músculo se mantiene la cifra orientativa de unas 10 series por músculo (ver abajo) | moderada |
+| Calistenia | Principal en todo menos remo y elevación lateral | Las flexiones y las variantes a una pierna ya eran la base (ver «Ejercicios por músculo»). Sin barra no hay un tirón de calistenia con fuentes fiables, y sin carga el hombro lateral no tiene resistencia: ahí la banda sigue de principal. Una barra de dominadas de puerta lo resolvería | débil |
+
 ## El material del ticket
 
 | Artículo | Qué es | Confirmado |

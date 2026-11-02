@@ -1,11 +1,11 @@
 # Libreta de Hierro
 
-Web de rutinas para hacer en casa, en el móvil: cuatro planes de unos 60 minutos solo con esterilla, minibandas, banda larga, tubo con asas y peso corporal, imagen y vídeo de cada ejercicio, 2 alternativas por ejercicio, temporizador configurable y registro que recuerda la sesión anterior.
+Web de rutinas para hacer en casa, en el móvil: sesiones de 20 minutos, 4-6 días por semana, de calistenia con bandas y tubo como alternativa. Imagen y vídeo de cada ejercicio, 2 alternativas por ejercicio, temporizador configurable y registro que recuerda la sesión anterior.
 
-| Enlace | Persona | Planes |
+| Enlace | Persona | Plan |
 |---|---|---|
-| [Carlos](https://cmesonarana.github.io/libreta-de-hierro/carlos/) | 32 años, 75 kg. Estética: pecho, glúteo, hombros y abdomen | 2 y 3 días por semana |
-| [Kevin](https://cmesonarana.github.io/libreta-de-hierro/kevin/) | 32 años, 105 kg. Perder grasa sin perder músculo | 2 y 3 días por semana |
+| [Carlos](https://cmesonarana.github.io/libreta-de-hierro/carlos/) | 32 años, 75 kg. Estética: pecho, glúteo, hombros y abdomen | 4 sesiones de 20 min (A-D) que rotan, 4-6 días por semana |
+| [Kevin](https://cmesonarana.github.io/libreta-de-hierro/kevin/) | 32 años, 105 kg. Perder grasa sin perder músculo | Fuerza A, cardio suave, Fuerza B e intervalos, 20 min cada una, 4-6 días por semana |
 
 Cada enlace muestra solo la rutina de esa persona. La raíz (`/libreta-de-hierro/`) solo deja elegir entre los dos. Los enlaces antiguos (`/estetica/`, `/perdida/`) redirigen a los nuevos.
 
@@ -23,7 +23,7 @@ Para probarla en el ordenador hace falta un servidor local (`python -m http.serv
 
 ## Cómo se usa
 
-- Elige 2 o 3 días y la sesión (A, B, C). Cada sesión va por **pasos** numerados: un ejercicio suelto, una superserie (2 ejercicios alternos) o un circuito. Tras guardar una sesión, la app pasa sola a la siguiente.
+- Elige la sesión (A, B, C, D): son de 20 minutos y rotan, para hacer 4-6 días por semana. Cada sesión va por **pasos** numerados: un ejercicio suelto, una superserie (2 ejercicios alternos) o un circuito. Tras guardar una sesión, la app pasa sola a la siguiente.
 - **Empezar sesión** (o **Empezar** en un paso concreto) pone la app en modo sesión. El paso, el ejercicio y la serie en la que estás quedan marcados, y la barra de abajo dice dónde vas («Paso 2 de 4 · Serie 3 de 4»), qué toca y cuántas reps.
 - La rutina lleva el reloj sola: **Prepárate** (10 s) → **serie** (tiempo según las reps, 4 s por repetición) → **descanso** (el que marca cada ejercicio) → siguiente serie. En las superseries, tras el primer ejercicio sale «Cambia a 1B» y, al cerrar la vuelta, el descanso con «Siguiente: …». Si acabas antes, pulsa **Hecha**; si necesitas más, **+15**.
 - **Saltar** termina la preparación o el descanso. **⏮ Atrás** deshace la última serie y vuelve a ella. Los números de serie de cada paso (1, 2, 3, 4) y el número de cada fila sirven para ir a otra serie.
@@ -40,7 +40,7 @@ Para probarla en el ordenador hace falta un servidor local (`python -m http.serv
 
 - `carlos/`, `kevin/`: la página de cada persona (solo dicen qué rutina cargar). Al cambiar cualquier archivo, sube el número `?v=` de sus enlaces para que los móviles carguen la versión nueva al momento.
 - `app.js`, `app.css`: la aplicación.
-- `rutinas.js`: los cuatro planes (series, reps, descansos, alternativas, notas). Es lo que hay que tocar para cambiar una rutina.
+- `rutinas.js`: los planes de cada persona (series, reps, descansos, alternativas, notas). Es lo que hay que tocar para cambiar una rutina.
 - `ejercicios.js` + `img/`: nombres, pasos e ilustraciones de cada ejercicio. Los ejercicios con bandas sin imagen propia reutilizan la del mismo movimiento y lo avisan en su ficha.
 - `videos.js`: un vídeo de técnica de YouTube por ejercicio. Si alguno desaparece, borra su línea y la app mostrará un enlace de búsqueda.
 
